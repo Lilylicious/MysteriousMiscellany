@@ -1,0 +1,3 @@
+###Version 1.10.2-1.0.1
+* FIXED: Fixed weird rendering on handheld items
+* REMOVED: Removed enchanting ability, may be added in later with proper support
