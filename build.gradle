@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 
-version = "${minecraft_version}-${mysteriousmiscellany_version}"
+version = "1.10.2-1.0"
 group= "java.lilylicious" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MysteriousMiscellany"
 
@@ -24,8 +24,8 @@ minecraft {
     runDir = "run"
     mappings = "snapshot_20161111"
 
+    replaceIn "mysteriousmiscellany/MMCore.java"
     replace "@VERSION@", project.version
-    replaceIn "MMCore.java"
     useDepAts = true
 }
 
