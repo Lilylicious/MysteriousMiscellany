@@ -189,7 +189,12 @@ public class FishStopper extends ItemMM {
 
         GlStateManager.popMatrix();
 
+        RenderHelper.enableStandardItemLighting();
         Minecraft.getMinecraft().entityRenderer.enableLightmap();
+        GlStateManager.enableDepth();
+        GlStateManager.enableLighting();
+        GlStateManager.enableAlpha();
+        GlStateManager.depthMask(true);
         GlStateManager.enableTexture2D();
     }
 
