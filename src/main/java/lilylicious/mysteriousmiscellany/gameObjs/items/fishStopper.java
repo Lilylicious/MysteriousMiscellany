@@ -32,6 +32,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.model.ISmartVariant;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.BlockSnapshot;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -47,7 +48,7 @@ import java.util.Set;
 public class FishStopper extends ItemMM {
 
     public FishStopper() {
-        super(0F, 0F, ToolMaterial.WOOD, new HashSet<Block>());
+        super(0F, 4F, EnumHelper.addToolMaterial("fishStopper", 0, MMConfig.durability, 2.0F, 1F, 0), new HashSet<Block>());
         this.setUnlocalizedName("fishstopper");
         this.setMaxStackSize(1);
         this.setMaxDamage(MMConfig.durability);
