@@ -1,0 +1,1 @@
+* Boots or boots-enchant that removes decorative grass from grass blocks
