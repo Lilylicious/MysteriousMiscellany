@@ -7,6 +7,7 @@ import lilylicious.mysteriousmiscellany.gameObjs.blocks.EnchantmentAir;
 import lilylicious.mysteriousmiscellany.gameObjs.items.EnchantBooster;
 import lilylicious.mysteriousmiscellany.gameObjs.items.FishStopper;
 import lilylicious.mysteriousmiscellany.gameObjs.items.InfusedFishStopper;
+import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileEnchantmentAir;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -38,6 +39,9 @@ public class ObjHandler {
         GameRegistry.register(enchantmentAir, new ResourceLocation(MMCore.MODID, enchantmentAir.getUnlocalizedName()));
         registerBlockWithItem(compressedBookshelf, compressedBookshelf.getUnlocalizedName());
         registerBlockWithItem(doubleCompressedBookshelf, doubleCompressedBookshelf.getUnlocalizedName());
+
+        //Tiles
+        GameRegistry.registerTileEntity(TileEnchantmentAir.class, "TileEnchantmentAir");
     }
 
     public static void addRecipes() {

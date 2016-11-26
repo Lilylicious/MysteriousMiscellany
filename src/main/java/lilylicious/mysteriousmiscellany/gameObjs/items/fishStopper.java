@@ -55,16 +55,20 @@ public class FishStopper extends ToolMM {
     public void onUpdate(ItemStack stack, World world, Entity entity, int invSlot, boolean par5) {
         
         EntityPlayer player = (EntityPlayer)entity;
-        if(AOEMode){
 
-            Iterable<BlockPos> iterable = WorldHelper.findBox(player, MMConfig.destroyRadius);
+        if(AOEMode){
+            int x = (int) Math.floor(player.posX);
+            int y = (int) (player.posY - player.getYOffset());
+            int z = (int) Math.floor(player.posZ);
+            BlockPos playerPos = new BlockPos(x, y, z);
+            Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, MMConfig.destroyRadius);
 
             for (BlockPos blockPos : iterable) {
                 IBlockState blockState = player.worldObj.getBlockState(blockPos);
                 
                 BlockSilverfish.EnumType type = ((BlockSilverfish.EnumType)blockState.getProperties().get(BlockSilverfish.VARIANT));
                 if (blockState.getBlock() == Blocks.MONSTER_EGG) {
-                    if(WorldHelper.replaceBlock(player, blockPos, Blocks.MONSTER_EGG, getNewBlock(type))){
+                    if(WorldHelper.replaceBlock(player, world, blockPos, Blocks.MONSTER_EGG, getNewBlock(type))){
                         stack.damageItem(1, player);
                     }
                 }
@@ -93,7 +97,7 @@ public class FishStopper extends ToolMM {
         BlockSilverfish.EnumType type = ((BlockSilverfish.EnumType)world.getBlockState(pos).getProperties().get(BlockSilverfish.VARIANT));
 
 
-        if(WorldHelper.replaceBlock(player, pos, Blocks.MONSTER_EGG, getNewBlock(type))){
+        if(WorldHelper.replaceBlock(player, world, pos, Blocks.MONSTER_EGG, getNewBlock(type))){
             stack.damageItem(1, player);
         }
         
@@ -120,7 +124,12 @@ public class FishStopper extends ToolMM {
        
         Set<BlockPos> coordinates = new HashSet<BlockPos>();
 
-        Iterable<BlockPos> iterable = WorldHelper.findBox(player, radius);
+        int x = (int) Math.floor(player.posX);
+        int y = (int) (player.posY - player.getYOffset());
+        int z = (int) Math.floor(player.posZ);
+        BlockPos playerPos = new BlockPos(x, y, z);
+
+        Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, radius);
 
         for (BlockPos blockPos : iterable) {
             IBlockState blockState = player.worldObj.getBlockState(blockPos);
