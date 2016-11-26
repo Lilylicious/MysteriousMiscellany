@@ -1,6 +1,7 @@
 package lilylicious.mysteriousmiscellany.gameObjs.items;
 
 import lilylicious.mysteriousmiscellany.config.MMConfig;
+import lilylicious.mysteriousmiscellany.gameObjs.items.ToolMM;
 import lilylicious.mysteriousmiscellany.utils.WorldHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
