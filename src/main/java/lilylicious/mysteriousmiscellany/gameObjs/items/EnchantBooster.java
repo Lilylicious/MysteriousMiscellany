@@ -60,7 +60,7 @@ public class EnchantBooster extends ItemMM {
 
                 }
             }
-            
+
         }
         if (foundAir) {
             for (BlockPos pos : savedPositions) {
