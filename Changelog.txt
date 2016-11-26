@@ -1,3 +1,10 @@
+###Version 1.10.2-1.1
+*ADDED: Compressed and Double Compressed Bookshelves.
+*ADDED: Enchantment Booster. Keep in your inventory to boost a nearby enchantment table to max power!
+
+###Version 1.10.2-1.0.2
+* ADDED: Infused Fishstopper. Allows AOE mode without needing to do configs for it.
+
 ###Version 1.10.2-1.0.1
 * FIXED: Fixed weird rendering on handheld items
 * REMOVED: Removed enchanting ability, may be added in later with proper support

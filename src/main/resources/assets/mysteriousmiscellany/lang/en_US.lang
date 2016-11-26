@@ -1,1 +1,5 @@
 item.mm_fishstopper.name=Fishstopper
+item.mm_infusedFishstopper.name=Infused Fishstopper
+item.mm_enchantBooster.name=Enchant Booster
+tile.mm_compressedBookshelf.name=Compressed Bookshelf
+tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf

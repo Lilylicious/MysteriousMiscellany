@@ -1,14 +1,9 @@
 package lilylicious.mysteriousmiscellany.gameObjs.items;
 
-import com.google.common.collect.ImmutableMap;
 import lilylicious.mysteriousmiscellany.config.MMConfig;
-import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
-import lilylicious.mysteriousmiscellany.utils.MMLogger;
+import lilylicious.mysteriousmiscellany.utils.WorldHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,9 +14,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -29,7 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.client.model.ISmartVariant;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.common.util.EnumHelper;
@@ -38,36 +30,40 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockSilverfish;
 
 import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FishStopper extends ItemMM {
+public class FishStopper extends ToolMM {
 
+    protected boolean AOEMode = MMConfig.defaultAOEMode;
+    
     public FishStopper() {
-        super(0F, 4F, EnumHelper.addToolMaterial("fishStopper", 0, MMConfig.durability, 2.0F, 1F, 0), new HashSet<Block>());
+        super(0F, 4F, EnumHelper.addToolMaterial("fishStopper", 0, MMConfig.stopperDurability, 2.0F, 1F, 0), new HashSet<Block>());
         this.setUnlocalizedName("fishstopper");
-        this.setMaxStackSize(1);
-        this.setMaxDamage(MMConfig.durability);
+        this.setMaxDamage(MMConfig.stopperDurability);
+    }
+
+    protected FishStopper(float attackDamageIn, float attackSpeedIn, ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
+        super(attackDamageIn, attackSpeedIn, materialIn, effectiveBlocksIn);
     }
 
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int invSlot, boolean par5) {
-
-
+        
         EntityPlayer player = (EntityPlayer)entity;
-        if(MMConfig.AOEMode){
+        if(AOEMode){
 
-            Iterable<BlockPos> iterable = findBox(player, MMConfig.destroyRadius);
+            Iterable<BlockPos> iterable = WorldHelper.findBox(player, MMConfig.destroyRadius);
 
             for (BlockPos blockPos : iterable) {
                 IBlockState blockState = player.worldObj.getBlockState(blockPos);
-
+                
+                BlockSilverfish.EnumType type = ((BlockSilverfish.EnumType)blockState.getProperties().get(BlockSilverfish.VARIANT));
                 if (blockState.getBlock() == Blocks.MONSTER_EGG) {
-                    if(replaceBlock(player, blockPos)){
+                    if(WorldHelper.replaceBlock(player, blockPos, Blocks.MONSTER_EGG, getNewBlock(type))){
                         stack.damageItem(1, player);
                     }
                 }
@@ -92,38 +88,15 @@ public class FishStopper extends ItemMM {
             pos = rtr.getBlockPos();
             sideHit = rtr.sideHit;
         }
-        
-        if(replaceBlock(player, pos)){
+
+        BlockSilverfish.EnumType type = ((BlockSilverfish.EnumType)world.getBlockState(pos).getProperties().get(BlockSilverfish.VARIANT));
+
+
+        if(WorldHelper.replaceBlock(player, pos, Blocks.MONSTER_EGG, getNewBlock(type))){
             stack.damageItem(1, player);
         }
         
         return EnumActionResult.SUCCESS;
-    }
-    
-    private boolean replaceBlock(EntityPlayer player, BlockPos pos){
-
-        IBlockState blockState = player.worldObj.getBlockState(pos);
-        if(blockState.getBlock() == Blocks.MONSTER_EGG &&
-                !FMLCommonHandler.instance().getMinecraftServerInstance().isBlockProtected(player.worldObj, pos, player)){
-            
-            BlockSilverfish.EnumType type = ((BlockSilverfish.EnumType)blockState.getProperties().get(BlockSilverfish.VARIANT));
-            IBlockState newBlockState = getNewBlock(type);
-            
-            BlockSnapshot before = BlockSnapshot.getBlockSnapshot(player.worldObj, pos);
-            player.worldObj.setBlockState(pos, newBlockState);
-            BlockEvent.PlaceEvent evt = new BlockEvent.PlaceEvent(before, Blocks.AIR.getDefaultState(), player);
-            MinecraftForge.EVENT_BUS.post(evt);
-            if (evt.isCanceled())
-            {
-                player.worldObj.restoringBlockSnapshots = true;
-                before.restore(true, false);
-                player.worldObj.restoringBlockSnapshots = false;
-                return false;
-            }
-
-            return true;
-        }
-        return false;
     }
     
     private IBlockState getNewBlock(BlockSilverfish.EnumType type){
@@ -140,22 +113,13 @@ public class FishStopper extends ItemMM {
         renderOutlines(evt, player, coordinates, 200, 230, 180);
     }
 
-    private Iterable<BlockPos> findBox(EntityPlayer player, int radius){
-        Iterable<BlockPos> iterable = null;
-
-        int x = (int) Math.floor(player.posX);
-        int y = (int) (player.posY - player.getYOffset());
-        int z = (int) Math.floor(player.posZ);
-        BlockPos pos = new BlockPos(x, y, z);
-
-        return pos.getAllInBox(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius));
-    }
+    
     
     private Set<BlockPos> findBlocks(EntityPlayerSP player, int radius) {
        
         Set<BlockPos> coordinates = new HashSet<BlockPos>();
 
-        Iterable<BlockPos> iterable = findBox(player, radius);
+        Iterable<BlockPos> iterable = WorldHelper.findBox(player, radius);
 
         for (BlockPos blockPos : iterable) {
             IBlockState blockState = player.worldObj.getBlockState(blockPos);
@@ -245,5 +209,10 @@ public class FishStopper extends ItemMM {
         buffer.pos(mx + 1, my, mz + 1).color(r, g, b, a).endVertex();
         buffer.pos(mx, my, mz + 1).color(r, g, b, a).endVertex();
         buffer.pos(mx, my + 1, mz + 1).color(r, g, b, a).endVertex();
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return AOEMode;
     }
 }
