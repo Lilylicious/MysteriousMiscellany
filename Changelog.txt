@@ -1,6 +1,8 @@
+###Version 1.10.2-1.2.1
+*ADDED: Grass Stomping enchant. Common enchant that removes tall and doubletall grass without drops.
+
 ###Version 1.10.2-1.2
 *ADDED: Enchanting Generator. Generates RF from enchanting power (bookshelves).
-
 
 ###Version 1.10.2-1.1.1
 *FIXED: The enchantment booster no longer boosts an enchantment table permanently. Now requires you to keep the item with you.
