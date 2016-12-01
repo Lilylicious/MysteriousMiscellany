@@ -23,7 +23,7 @@ public class WorldHelper {
     public static boolean replaceBlock(EntityPlayer player, World world, BlockPos pos, Block oldBlock, IBlockState newBlockState) {
 
         IBlockState blockState = world.getBlockState(pos);
-        if (blockState.getBlock() == oldBlock &&
+        if ((oldBlock == null || blockState.getBlock() == oldBlock) &&
                 !FMLCommonHandler.instance().getMinecraftServerInstance().isBlockProtected(world, pos, player)) {
 
             BlockSnapshot before = BlockSnapshot.getBlockSnapshot(world, pos);

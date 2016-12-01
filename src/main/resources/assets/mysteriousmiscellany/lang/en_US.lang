@@ -4,3 +4,5 @@ item.mm_enchantBooster.name=Enchant Booster
 tile.mm_compressedBookshelf.name=Compressed Bookshelf
 tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf
 tile.mm_enchantingGenerator.name=Enchanting Generator
+
+enchantment.grassStomping=Grass Stomping

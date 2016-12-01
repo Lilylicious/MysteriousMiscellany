@@ -1,6 +1,7 @@
 package lilylicious.mysteriousmiscellany;
 
 import lilylicious.mysteriousmiscellany.config.MMConfig;
+import lilylicious.mysteriousmiscellany.enchantment.Enchantments;
 import lilylicious.mysteriousmiscellany.events.RenderEvents;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
 import lilylicious.mysteriousmiscellany.proxies.IProxy;
@@ -33,6 +34,7 @@ public class MMCore {
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
 
         ObjHandler.register();
+        Enchantments.init();
         ObjHandler.addRecipes();
 
         proxy.registerModels();
