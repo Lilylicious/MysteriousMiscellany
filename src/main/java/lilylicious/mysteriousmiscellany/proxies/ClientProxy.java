@@ -23,6 +23,7 @@ public class ClientProxy implements IProxy {
 
         registerBlock(ObjHandler.compressedBookshelf);
         registerBlock(ObjHandler.doubleCompressedBookshelf);
+        registerBlock(ObjHandler.enchantingGenerator);
     }
 
     private void registerItem(Item i) {
