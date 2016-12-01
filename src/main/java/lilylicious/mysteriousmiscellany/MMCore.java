@@ -1,7 +1,6 @@
 package lilylicious.mysteriousmiscellany;
 
 import lilylicious.mysteriousmiscellany.config.MMConfig;
-import lilylicious.mysteriousmiscellany.events.BlockEvents;
 import lilylicious.mysteriousmiscellany.events.RenderEvents;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
 import lilylicious.mysteriousmiscellany.proxies.IProxy;
@@ -19,7 +18,7 @@ public class MMCore {
 
     public static final String MODID = "MysteriousMiscellany";
     public static final String MODNAME = "Mysterious Miscellany";
-    public static final String VERSION = "1.10.2-1.1.0";
+    public static final String VERSION = "1.10.2-1.2";
 
     @Mod.Instance(MODID)
     public static MMCore instance;
@@ -32,7 +31,6 @@ public class MMCore {
         MMConfig.init(new File(event.getModConfigurationDirectory(), "MysteriousMiscellany.cfg"));
 
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
-        MinecraftForge.EVENT_BUS.register(new BlockEvents());
 
         ObjHandler.register();
         ObjHandler.addRecipes();

@@ -28,13 +28,18 @@ public class EnchantBooster extends ItemMM {
 
 
         EntityPlayer player = (EntityPlayer) entity;
-        Iterable<BlockPos> iterable = WorldHelper.findBox(player, 5);
+        int x = (int) Math.floor(player.posX);
+        int y = (int) (player.posY - player.getYOffset());
+        int z = (int) Math.floor(player.posZ);
+        BlockPos playerPos = new BlockPos(x, y, z);
+
+        Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, 5);
 
         boolean foundTable = false;
         boolean foundAir = false;
 
         for (BlockPos blockPos : iterable) {
-            IBlockState blockState = player.worldObj.getBlockState(blockPos);
+            IBlockState blockState = world.getBlockState(blockPos);
 
             if (blockState.getBlock() == Blocks.ENCHANTING_TABLE && !foundTable) {
 
@@ -55,11 +60,11 @@ public class EnchantBooster extends ItemMM {
 
                 }
             }
-            
+
         }
         if (foundAir) {
             for (BlockPos pos : savedPositions) {
-                WorldHelper.replaceBlock(player, pos, Blocks.AIR, ObjHandler.enchantmentAir.getDefaultState());
+                WorldHelper.replaceBlock(player, player.worldObj, pos, Blocks.AIR, ObjHandler.enchantmentAir.getDefaultState());
             }
         }
         if (!foundTable) {

@@ -12,9 +12,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class CompressedBookshelf extends BlockBookshelf{
+public class CompressedBookshelf extends BlockBookshelf {
 
-    public CompressedBookshelf(){
+    public CompressedBookshelf() {
         super();
         setUnlocalizedName("compressedBookshelf");
         setHardness(1.5f);
@@ -22,8 +22,7 @@ public class CompressedBookshelf extends BlockBookshelf{
 
     @Nonnull
     @Override
-    public Block setUnlocalizedName(@Nonnull String message)
-    {
+    public Block setUnlocalizedName(@Nonnull String message) {
         return super.setUnlocalizedName("mm_" + message);
     }
 

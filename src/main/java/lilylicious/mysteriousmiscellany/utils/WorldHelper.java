@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.world.BlockEvent;
@@ -15,31 +16,24 @@ import java.util.List;
 
 public class WorldHelper {
 
-    public static Iterable<BlockPos> findBox(EntityPlayer player, int radius) {
-        Iterable<BlockPos> iterable = null;
-
-        int x = (int) Math.floor(player.posX);
-        int y = (int) (player.posY - player.getYOffset());
-        int z = (int) Math.floor(player.posZ);
-        BlockPos pos = new BlockPos(x, y, z);
-
+    public static Iterable<BlockPos> findBox(BlockPos pos, int radius) {
         return pos.getAllInBox(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius));
     }
 
-    public static boolean replaceBlock(EntityPlayer player, BlockPos pos, Block oldBlock, IBlockState newBlockState) {
+    public static boolean replaceBlock(EntityPlayer player, World world, BlockPos pos, Block oldBlock, IBlockState newBlockState) {
 
-        IBlockState blockState = player.worldObj.getBlockState(pos);
+        IBlockState blockState = world.getBlockState(pos);
         if (blockState.getBlock() == oldBlock &&
-                !FMLCommonHandler.instance().getMinecraftServerInstance().isBlockProtected(player.worldObj, pos, player)) {
+                !FMLCommonHandler.instance().getMinecraftServerInstance().isBlockProtected(world, pos, player)) {
 
-            BlockSnapshot before = BlockSnapshot.getBlockSnapshot(player.worldObj, pos);
-            player.worldObj.setBlockState(pos, newBlockState);
+            BlockSnapshot before = BlockSnapshot.getBlockSnapshot(world, pos);
+            world.setBlockState(pos, newBlockState);
             BlockEvent.PlaceEvent evt = new BlockEvent.PlaceEvent(before, Blocks.AIR.getDefaultState(), player);
             MinecraftForge.EVENT_BUS.post(evt);
             if (evt.isCanceled()) {
-                player.worldObj.restoringBlockSnapshots = true;
+                world.restoringBlockSnapshots = true;
                 before.restore(true, false);
-                player.worldObj.restoringBlockSnapshots = false;
+                world.restoringBlockSnapshots = false;
                 return false;
             }
 
