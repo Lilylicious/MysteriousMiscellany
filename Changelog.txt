@@ -1,3 +1,6 @@
+###Version 1.10.2-1.2.2
+*FIXED: Servers no longer try to load render classes. Woops.
+
 ###Version 1.10.2-1.2.1
 *ADDED: Grass Stomping enchant. Common enchant that removes tall and doubletall grass without drops.
 

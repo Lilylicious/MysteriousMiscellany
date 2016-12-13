@@ -19,7 +19,7 @@ public class MMCore {
 
     public static final String MODID = "MysteriousMiscellany";
     public static final String MODNAME = "Mysterious Miscellany";
-    public static final String VERSION = "1.10.2-1.2.1";
+    public static final String VERSION = "1.10.2-1.2.3";
 
     @Mod.Instance(MODID)
     public static MMCore instance;
@@ -31,12 +31,13 @@ public class MMCore {
     public void preInit(FMLPreInitializationEvent event) {
         MMConfig.init(new File(event.getModConfigurationDirectory(), "MysteriousMiscellany.cfg"));
 
-        MinecraftForge.EVENT_BUS.register(new RenderEvents());
+
 
         ObjHandler.register();
         Enchantments.init();
         ObjHandler.addRecipes();
 
+        proxy.registerClientOnlyEvents();
         proxy.registerModels();
     }
 

@@ -1,11 +1,13 @@
 package lilylicious.mysteriousmiscellany.proxies;
 
+import lilylicious.mysteriousmiscellany.events.RenderEvents;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -13,6 +15,11 @@ public class ClientProxy implements IProxy {
     @Override
     public EntityPlayer getClientPlayer() {
         return FMLClientHandler.instance().getClientPlayerEntity();
+    }
+
+    @Override
+    public void registerClientOnlyEvents() {
+        MinecraftForge.EVENT_BUS.register(new RenderEvents());
     }
 
     @Override

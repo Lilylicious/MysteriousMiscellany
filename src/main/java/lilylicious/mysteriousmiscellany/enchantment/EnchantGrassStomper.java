@@ -30,7 +30,7 @@ public class EnchantGrassStomper extends EnchantmentBase {
         Block target = null;
 
         for (ItemStack stack : player.getArmorInventoryList()) {
-            if (stack != null && ((ItemArmor) stack.getItem()).getEquipmentSlot().ordinal() == 2)
+            if (stack != null && player.getEntityWorld().isRemote && stack.getItem() instanceof ItemArmor && ((ItemArmor) stack.getItem()).getEquipmentSlot().ordinal() == 2)
                 boots = stack;
         }
 
