@@ -1,3 +1,24 @@
+###TODO: Finish the spawn preventer. Needs texture, recipe and name.
+
+###Version 1.10.2-1.4.1
+*ADDED: Waterstopper. Removes water (both flowing and source) and ice within a radius around player. Sneak-RClick to activate.
+*ADDED: Ice Spreader. Removes water within a large radius around the block, placing ice around the edges to prevent water flowing in.
+
+###Version 1.10.2-1.4.0
+*ADDED: Waterstopper. Removes water (both flowing and source) and ice within a radius around player. Sneak-RClick to activate.
+*ADDED: Ice Spreader. Removes water within a large radius around the block, placing ice around the edges to prevent water flowing in.
+
+###Version 1.10.2-1.3.1
+*CHANGED: Server wide boss noises are now disabled by default (wither spawn/dragon death).
+
+###Version 1.10.2-1.3.0
+*ADDED: Prevent dragon death from being audible outside the end.
+*ADDED: Prevent ambient nether portal sounds (config default false)
+*ADDED: Prevent the ungodly loud nether portal arrival noise (config default false)
+*ADDED: Prevent villager hmmmmms (config default false)
+*ADDED: Prevent cat meows(config default false)
+*ADDED: Prevent animal step sounds (config default false)
+
 ###Version 1.10.2-1.2.2
 *FIXED: Servers no longer try to load render classes. Woops.
 

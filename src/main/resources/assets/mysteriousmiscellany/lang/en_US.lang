@@ -1,8 +1,10 @@
 item.mm_fishstopper.name=Fishstopper
 item.mm_infusedFishstopper.name=Infused Fishstopper
 item.mm_enchantBooster.name=Enchant Booster
+item.mm_waterStopper.name=Waterstopper
 tile.mm_compressedBookshelf.name=Compressed Bookshelf
 tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf
 tile.mm_enchantingGenerator.name=Enchanting Generator
+tile.mm_iceSpreader.name=Ice Spreader
 
 enchantment.grassStomping=Grass Stomping

@@ -31,6 +31,7 @@ public class RenderEvents {
 
         FishStopper fishStopper = (FishStopper) itemStack.getItem();
         fishStopper.renderOverlay(evt, p);
-
     }
+
+
 }
