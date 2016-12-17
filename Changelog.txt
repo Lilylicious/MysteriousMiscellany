@@ -1,4 +1,6 @@
-###TODO: Finish the spawn preventer. Needs texture, recipe and name.
+###Version 1.10.2-1.4.2
+*ADDED: Spawn Preventer. Prevents monster spawning within a (default) 32 block radius. Produces no light.
+*ADDED: Autorun. Configurable hotkey that makes your character move forwards while toggled. Needs hunger to be above 50%.
 
 ###Version 1.10.2-1.4.1
 *ADDED: Waterstopper. Removes water (both flowing and source) and ice within a radius around player. Sneak-RClick to activate.

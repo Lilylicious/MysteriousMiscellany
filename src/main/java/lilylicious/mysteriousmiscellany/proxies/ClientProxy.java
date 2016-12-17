@@ -1,6 +1,7 @@
 package lilylicious.mysteriousmiscellany.proxies;
 
 import lilylicious.mysteriousmiscellany.events.PlaySoundEvents;
+import lilylicious.mysteriousmiscellany.events.PlayerEvents;
 import lilylicious.mysteriousmiscellany.events.RenderEvents;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
 import net.minecraft.block.Block;
@@ -22,6 +23,7 @@ public class ClientProxy implements IProxy {
     public void registerClientOnlyEvents() {
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new PlaySoundEvents());
+        MinecraftForge.EVENT_BUS.register(new PlayerEvents());
     }
 
     @Override
@@ -35,6 +37,7 @@ public class ClientProxy implements IProxy {
         registerBlock(ObjHandler.doubleCompressedBookshelf);
         registerBlock(ObjHandler.enchantingGenerator);
         registerBlock(ObjHandler.iceSpreader);
+        registerBlock(ObjHandler.spawnPreventer);
     }
 
     private void registerItem(Item i) {

@@ -2,7 +2,7 @@
     "parent": "block/cube_bottom_top",
     "textures": {
         "bottom": "blocks/obsidian",
-        "top": "blocks/diamond_block",
+        "top": "mysteriousmiscellany:blocks/enchantinggenerator",
         "side": "mysteriousmiscellany:enchantbooster"
     }
 }
