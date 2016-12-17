@@ -7,6 +7,9 @@ public class ServerProxy implements IProxy {
         return null;
     }
 
+    public void registerClientOnlyEvents() {
+    }
+
     public void registerModels() {
     }
 }
