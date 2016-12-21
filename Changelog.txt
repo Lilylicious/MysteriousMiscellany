@@ -1,3 +1,7 @@
+###Version 1.10.2-1.4.3
+*ADDED: Bonemeal + flower = 2*flower
+*ADDED: Dye + 1-8 stained glass/panes/hardened Clay = 1-8 dyed. Goes in any directions.
+
 ###Version 1.10.2-1.4.2
 *ADDED: Spawn Preventer. Prevents monster spawning within a (default) 32 block radius. Produces no light.
 *ADDED: Autorun. Configurable hotkey that makes your character move forwards while toggled. Needs hunger to be above 50%.

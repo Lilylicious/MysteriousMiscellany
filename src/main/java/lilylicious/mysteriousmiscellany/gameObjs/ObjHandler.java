@@ -3,6 +3,7 @@ package lilylicious.mysteriousmiscellany.gameObjs;
 import lilylicious.mysteriousmiscellany.MMCore;
 import lilylicious.mysteriousmiscellany.gameObjs.blocks.*;
 import lilylicious.mysteriousmiscellany.gameObjs.items.*;
+import lilylicious.mysteriousmiscellany.gameObjs.recipes.DyeRecipes;
 import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileEnchantmentAir;
 import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileEnchantmentGenerator;
 import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileIceSpreader;
@@ -66,6 +67,8 @@ public class ObjHandler {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "BDB", "ETE", "BOB", 'B', Blocks.BOOKSHELF, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', Blocks.OBSIDIAN));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', Blocks.OBSIDIAN, 'I', Blocks.ICE, 'E', "gemEmerald"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spawnPreventer), "PDT", "EBE", "SGZ", 'P', Items.ENDER_PEARL, 'D', Blocks.DIAMOND_BLOCK, 'T', Items.GHAST_TEAR, 'E', "gemEmerald", 'B', Items.BONE, 'S', Items.STRING, 'G', Items.GUNPOWDER, 'Z', Items.ROTTEN_FLESH));
+
+        GameRegistry.addRecipe(new DyeRecipes());
     }
 
 
