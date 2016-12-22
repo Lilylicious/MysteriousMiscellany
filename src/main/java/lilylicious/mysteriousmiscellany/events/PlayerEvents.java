@@ -55,19 +55,6 @@ public class PlayerEvents {
         }
     }
 
-    @SubscribeEvent
-    public void onBonemealEvent(BonemealEvent evt) {
-        IBlockState blockstate = evt.getBlock();
-
-        if(blockstate.getBlock() instanceof BlockFlower){
-            EntityItem ei = new EntityItem(evt.getWorld(), evt.getPos().getX(), evt.getPos().getY(), evt.getPos().getZ(), new ItemStack(evt.getBlock().getBlock()));
-            if(!evt.getWorld().isRemote){
-                evt.getWorld().spawnEntityInWorld(ei);
-                evt.setResult(Event.Result.ALLOW);
-            }
-        }
-    }
-
     private boolean stopFood(EntityPlayer player) {
         if (player.getFoodStats().getFoodLevel() <= 10) {
             autorunActive = false;

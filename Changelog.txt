@@ -1,3 +1,7 @@
+###Version 1.10.2-1.4.4
+*FIXED: Bone mealing flowers on servers
+*FIXED: Texture for the spawn preventer
+
 ###Version 1.10.2-1.4.3
 *ADDED: Bonemeal + flower = 2*flower
 *ADDED: Dye + 1-8 stained glass/panes/hardened Clay = 1-8 dyed. Goes in any directions.
