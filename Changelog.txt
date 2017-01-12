@@ -1,3 +1,8 @@
+###Version 1.10.2-1.4.6
+*ADDED: Autocrafter. Only crafts 1x1 recipes.
+*RENAMED: Ice Spreader is now called Ocean Annihalator.
+*ADDED: Configs! Adjust the range of the Ocean Annihalator as well as disable any item in the mod! Be careful though, it might break recipes.
+
 ###Version 1.10.2-1.4.4
 *FIXED: Bone mealing flowers on servers
 *FIXED: Texture for the spawn preventer

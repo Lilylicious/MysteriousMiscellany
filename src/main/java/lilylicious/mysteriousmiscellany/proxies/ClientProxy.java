@@ -38,6 +38,7 @@ public class ClientProxy implements IProxy {
         registerBlock(ObjHandler.enchantingGenerator);
         registerBlock(ObjHandler.iceSpreader);
         registerBlock(ObjHandler.spawnPreventer);
+        registerBlock(ObjHandler.autoCrafter);
     }
 
     private void registerItem(Item i) {

@@ -5,9 +5,12 @@ item.mm_waterStopper.name=Waterstopper
 tile.mm_compressedBookshelf.name=Compressed Bookshelf
 tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf
 tile.mm_enchantingGenerator.name=Enchanting Generator
-tile.mm_iceSpreader.name=Ice Spreader
+tile.mm_iceSpreader.name=Ocean Annihalator
 tile.mm_spawnPreventer.name=Spawn Preventer
+tile.mm_autoCrafter.name=Autocrafter
 
 enchantment.grassStomping=Grass Stomping
 
 jei.dyerecipes=You can dye however many items you want of this type using a single dye and any amount of the item.
+jei.iceSpreader=This block removes water blocks in a large radius, placing ice along the edges to prevent flowing water.
+jei.autoCrafter=Put in items with a 1x1 recipe and get out the result.

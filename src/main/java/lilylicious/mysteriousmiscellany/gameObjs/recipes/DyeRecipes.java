@@ -6,7 +6,6 @@ import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -34,7 +33,7 @@ public class DyeRecipes implements IRecipe {
             ItemStack input = inv.getStackInSlot(i);
 
             if (input == null) {
-                continue;
+                return false;
             } else if (input.getItem() instanceof ItemDye)
                 dye = input;
             else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlass) {

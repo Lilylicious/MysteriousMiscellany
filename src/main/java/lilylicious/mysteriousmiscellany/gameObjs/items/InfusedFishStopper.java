@@ -1,7 +1,6 @@
 package lilylicious.mysteriousmiscellany.gameObjs.items;
 
 import lilylicious.mysteriousmiscellany.config.MMConfig;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -16,7 +15,7 @@ import java.util.HashSet;
 public class InfusedFishStopper extends FishStopper {
 
     public InfusedFishStopper() {
-        super(0F, 4F, EnumHelper.addToolMaterial("fishStopper", 0, MMConfig.infusedStopperDurability, 2.0F, 1F, 0), new HashSet<Block>());
+        super(0F, 4F, EnumHelper.addToolMaterial("fishStopper", 0, MMConfig.infusedStopperDurability, 2.0F, 1F, 0), new HashSet<>());
         this.setUnlocalizedName("infusedFishstopper");
         this.setMaxDamage(MMConfig.infusedStopperDurability);
     }

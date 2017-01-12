@@ -13,26 +13,23 @@ public class TileSpawnPreventer extends TileEntity implements ITickable {
     @Override
     public void update() {
 
-        if(!addedToList)
-            synchronized (SpawnEvents.spawnPreventers) {
-                if (!SpawnEvents.spawnPreventers.contains(this))
-                    SpawnEvents.spawnPreventers.add(this);
-            }
-        addedToList=true;
+        if (!addedToList)
+            if (!SpawnEvents.spawnPreventers.contains(this))
+                SpawnEvents.spawnPreventers.add(this);
+
+        addedToList = true;
 
     }
 
-    public int getRadiusSquared(){
-        return (int)Math.pow(MMConfig.spawnPreventionRadius, 2);
+    public int getRadiusSquared() {
+        return (int) Math.pow(MMConfig.spawnPreventionRadius, 2);
     }
 
     @Override
-    public void invalidate()
-    {
-        synchronized (SpawnEvents.spawnPreventers) {
-            if (SpawnEvents.spawnPreventers.contains(this))
-                SpawnEvents.spawnPreventers.remove(this);
-        }
+    public void invalidate() {
+        if (SpawnEvents.spawnPreventers.contains(this))
+            SpawnEvents.spawnPreventers.remove(this);
+
         super.invalidate();
     }
 

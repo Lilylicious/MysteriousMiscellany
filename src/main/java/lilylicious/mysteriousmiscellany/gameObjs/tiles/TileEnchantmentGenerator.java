@@ -4,14 +4,16 @@ import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
+import lilylicious.mysteriousmiscellany.utils.WorldHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.ForgeHooks;
 
 public class TileEnchantmentGenerator extends TileEntity implements IEnergyProvider, ITickable {
 
-    public final EnergyStorage storage = new EnergyStorage(10000);
+    private final EnergyStorage storage = new EnergyStorage(10000);
     private int power = 0;
     private int generated = 0;
 
@@ -53,7 +55,7 @@ public class TileEnchantmentGenerator extends TileEntity implements IEnergyProvi
                     if (this.getWorld().getTileEntity(this.getPos().add(side.getDirectionVec())) != null) {
                         TileEntity tileDestination = this.getWorld().getTileEntity(this.getPos().add(side.getDirectionVec()));
 
-                        if (this instanceof IEnergyProvider && tileDestination instanceof IEnergyReceiver) {
+                        if (tileDestination instanceof IEnergyReceiver) {
                             IEnergyProvider from = this;
                             IEnergyReceiver to = (IEnergyReceiver) tileDestination;
 
@@ -96,12 +98,15 @@ public class TileEnchantmentGenerator extends TileEntity implements IEnergyProvi
     }
 
     public boolean isWorking() {
-        return this.getWorld().getBlockState(this.getPos().add(0, -1, 0)).getBlock() != ObjHandler.enchantingGenerator
-                && this.getWorld().getBlockState(this.getPos().add(0, 1, 0)).getBlock() != ObjHandler.enchantingGenerator
-                && this.getWorld().getBlockState(this.getPos().add(1, 0, 0)).getBlock() != ObjHandler.enchantingGenerator
-                && this.getWorld().getBlockState(this.getPos().add(0, 0, 1)).getBlock() != ObjHandler.enchantingGenerator
-                && this.getWorld().getBlockState(this.getPos().add(-1, 0, 0)).getBlock() != ObjHandler.enchantingGenerator
-                && this.getWorld().getBlockState(this.getPos().add(0, 0, -1)).getBlock() != ObjHandler.enchantingGenerator;
+
+        Iterable<BlockPos> iterable = WorldHelper.findBox(getPos(), 1);
+
+        for (BlockPos blockPos : iterable) {
+            if(!blockPos.equals(getPos()) && getWorld().getBlockState(blockPos).getBlock() == ObjHandler.enchantingGenerator)
+                return false;
+        }
+
+        return true;
     }
 
 }

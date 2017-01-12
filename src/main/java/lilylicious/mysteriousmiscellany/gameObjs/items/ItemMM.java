@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 
 import javax.annotation.Nonnull;
 
-public class ItemMM extends Item {
+class ItemMM extends Item {
 
     @Nonnull
     @Override

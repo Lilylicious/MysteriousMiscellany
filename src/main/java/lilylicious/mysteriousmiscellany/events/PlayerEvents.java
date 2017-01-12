@@ -1,26 +1,21 @@
 package lilylicious.mysteriousmiscellany.events;
 
 import lilylicious.mysteriousmiscellany.MMCore;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
+@SuppressWarnings("unused")
 public class PlayerEvents {
 
-    boolean autorunActive = false;
-    boolean toggled;
+    private boolean autorunActive = false;
+    private boolean toggled;
     private KeyBinding TOGGLE_AUTORUN;
 
     /* Bindings collection to register at runtime */

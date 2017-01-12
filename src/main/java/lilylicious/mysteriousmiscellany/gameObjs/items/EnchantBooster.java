@@ -28,10 +28,7 @@ public class EnchantBooster extends ItemMM {
 
 
         EntityPlayer player = (EntityPlayer) entity;
-        int x = (int) Math.floor(player.posX);
-        int y = (int) (player.posY - player.getYOffset());
-        int z = (int) Math.floor(player.posZ);
-        BlockPos playerPos = new BlockPos(x, y, z);
+        BlockPos playerPos = player.getPosition();
 
         Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, 5);
 
@@ -44,7 +41,7 @@ public class EnchantBooster extends ItemMM {
             if (blockState.getBlock() == Blocks.ENCHANTING_TABLE && !foundTable) {
 
                 foundTable = true;
-                List<BlockPos> blockList = new ArrayList<>();
+                List<BlockPos> blockList;
 
                 blockList = WorldHelper.findEligibleBlocksEnchanting(blockPos);
 

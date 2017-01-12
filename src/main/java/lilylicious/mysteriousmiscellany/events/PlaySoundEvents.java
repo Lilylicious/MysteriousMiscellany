@@ -1,25 +1,10 @@
 package lilylicious.mysteriousmiscellany.events;
 
 import lilylicious.mysteriousmiscellany.config.MMConfig;
-import lilylicious.mysteriousmiscellany.gameObjs.items.FishStopper;
-import lilylicious.mysteriousmiscellany.utils.MMLogger;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.PositionedSound;
-import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.audio.SoundManager;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
-import net.minecraft.init.SoundEvents;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import java.util.Iterator;
-import java.util.Map;
 
 public class PlaySoundEvents {
 
@@ -57,7 +42,7 @@ public class PlaySoundEvents {
                     || evt.getName().endsWith("sheep.step")
                     || evt.getName().endsWith("chicken.step")
                     || evt.getName().endsWith("pig.step")){
-
+                evt.setResultSound(null);
             }
         }
 

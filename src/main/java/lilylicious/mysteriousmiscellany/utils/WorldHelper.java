@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,7 +18,7 @@ import java.util.List;
 public class WorldHelper {
 
     public static Iterable<BlockPos> findBox(BlockPos pos, int radius) {
-        return pos.getAllInBox(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius));
+        return BlockPos.getAllInBox(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius));
     }
 
     public static boolean replaceBlock(EntityPlayer player, World world, BlockPos pos, Block oldBlock, IBlockState newBlockState) {
@@ -28,7 +29,7 @@ public class WorldHelper {
 
             BlockSnapshot before = BlockSnapshot.getBlockSnapshot(world, pos);
             world.setBlockState(pos, newBlockState);
-            BlockEvent.PlaceEvent evt = new BlockEvent.PlaceEvent(before, Blocks.AIR.getDefaultState(), player);
+            BlockEvent.PlaceEvent evt = new BlockEvent.PlaceEvent(before, Blocks.AIR.getDefaultState(), player, EnumHand.MAIN_HAND);
             MinecraftForge.EVENT_BUS.post(evt);
             if (evt.isCanceled()) {
                 world.restoringBlockSnapshots = true;
@@ -63,5 +64,4 @@ public class WorldHelper {
 
         return blockList;
     }
-
 }

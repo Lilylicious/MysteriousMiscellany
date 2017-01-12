@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class EnchantGrassStomper extends EnchantmentBase {
 
-    protected EnchantGrassStomper() {
+    EnchantGrassStomper() {
         super(Rarity.COMMON, EnumEnchantmentType.ARMOR_FEET, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});
         setName("grassStomping");
         setRegistryName("grassStomping");
@@ -27,7 +27,7 @@ public class EnchantGrassStomper extends EnchantmentBase {
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
         ItemStack boots = null;
-        Block target = null;
+        Block target;
 
         for (ItemStack stack : player.getArmorInventoryList()) {
             if (stack != null && player.getEntityWorld().isRemote && stack.getItem() instanceof ItemArmor && ((ItemArmor) stack.getItem()).getEquipmentSlot().ordinal() == 2)

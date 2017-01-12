@@ -1,9 +1,7 @@
 package lilylicious.mysteriousmiscellany.gameObjs.blocks;
 
-import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileEnchantmentAir;
 import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileIceSpreader;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -19,7 +17,7 @@ import java.util.UUID;
 
 public class IceSpreader extends Block implements ITileEntityProvider {
 
-    protected UUID owner;
+    private UUID owner;
     public IceSpreader() {
         super(Material.GLASS);
         this.setHarvestLevel("pickaxe", 0);

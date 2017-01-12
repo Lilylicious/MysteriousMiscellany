@@ -1,13 +1,15 @@
 package lilylicious.mysteriousmiscellany.gameObjs;
 
 import lilylicious.mysteriousmiscellany.MMCore;
+import lilylicious.mysteriousmiscellany.config.MMConfig;
 import lilylicious.mysteriousmiscellany.gameObjs.blocks.*;
-import lilylicious.mysteriousmiscellany.gameObjs.items.*;
+import lilylicious.mysteriousmiscellany.gameObjs.items.EnchantBooster;
+import lilylicious.mysteriousmiscellany.gameObjs.items.FishStopper;
+import lilylicious.mysteriousmiscellany.gameObjs.items.InfusedFishStopper;
+import lilylicious.mysteriousmiscellany.gameObjs.items.WaterStopper;
 import lilylicious.mysteriousmiscellany.gameObjs.recipes.DyeRecipes;
-import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileEnchantmentAir;
-import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileEnchantmentGenerator;
-import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileIceSpreader;
-import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileSpawnPreventer;
+import lilylicious.mysteriousmiscellany.gameObjs.tiles.*;
+import lilylicious.mysteriousmiscellany.utils.MMLogger;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -33,6 +35,7 @@ public class ObjHandler {
     public static final Block enchantingGenerator = new EnchantmentGenerator();
     public static final Block iceSpreader = new IceSpreader();
     public static final Block spawnPreventer = new SpawnPreventer();
+    public static final Block autoCrafter = new AutoCrafter();
 
     public static void register() {
         //Items
@@ -48,27 +51,39 @@ public class ObjHandler {
         registerBlockWithItem(enchantingGenerator, enchantingGenerator.getUnlocalizedName());
         registerBlockWithItem(iceSpreader, iceSpreader.getUnlocalizedName());
         registerBlockWithItem(spawnPreventer, spawnPreventer.getUnlocalizedName());
+        registerBlockWithItem(autoCrafter, autoCrafter.getUnlocalizedName());
 
         //Tiles
         GameRegistry.registerTileEntity(TileEnchantmentAir.class, "TileEnchantmentAir");
         GameRegistry.registerTileEntity(TileEnchantmentGenerator.class, "TileEnchantmentGenerator");
         GameRegistry.registerTileEntity(TileIceSpreader.class, "TileIceSpreader");
         GameRegistry.registerTileEntity(TileSpawnPreventer.class, "TileSpawnPreventer");
+        GameRegistry.registerTileEntity(TileAutoCrafter.class, "TileAutoCrafter");
     }
 
     public static void addRecipes() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fishStopper), "SES", "ESE", "SES", 'S', "stone", 'E', "gemEmerald"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(infusedFishStopper), "RER", "EFE", "RER", 'F', new ItemStack(fishStopper, 1, OreDictionary.WILDCARD_VALUE), 'R', "blockRedstone", 'E', "gemEmerald"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantBooster), "BBB", "BEB", "BBB", 'B', doubleCompressedBookshelf, 'E', "gemEmerald"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(waterStopper), "OBO", "BDB", "OBO", 'B', Items.BUCKET, 'D', "gemDiamond", 'O', Blocks.OBSIDIAN));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compressedBookshelf), "BBB", "BBB", "BBB", 'B', Blocks.BOOKSHELF));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(doubleCompressedBookshelf), "BBB", "BBB", "BBB", 'B', compressedBookshelf));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "BDB", "ETE", "BOB", 'B', Blocks.BOOKSHELF, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', Blocks.OBSIDIAN));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', Blocks.OBSIDIAN, 'I', Blocks.ICE, 'E', "gemEmerald"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spawnPreventer), "PDT", "EBE", "SGZ", 'P', Items.ENDER_PEARL, 'D', Blocks.DIAMOND_BLOCK, 'T', Items.GHAST_TEAR, 'E', "gemEmerald", 'B', Items.BONE, 'S', Items.STRING, 'G', Items.GUNPOWDER, 'Z', Items.ROTTEN_FLESH));
-
-        GameRegistry.addRecipe(new DyeRecipes());
+        if(MMConfig.enableFishstopper)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fishStopper), "SES", "ESE", "SES", 'S', "stone", 'E', "gemEmerald"));
+        if(MMConfig.enableInfusedFishStopper)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(infusedFishStopper), "RER", "EFE", "RER", 'F', new ItemStack(fishStopper, 1, OreDictionary.WILDCARD_VALUE), 'R', "blockRedstone", 'E', "gemEmerald"));
+        if(MMConfig.enableEnchantBooster)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantBooster), "BBB", "BEB", "BBB", 'B', doubleCompressedBookshelf, 'E', "gemEmerald"));
+        if(MMConfig.enableWaterStopper)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(waterStopper), "OBO", "BDB", "OBO", 'B', Items.BUCKET, 'D', "gemDiamond", 'O', Blocks.OBSIDIAN));
+        if(MMConfig.enableCompressedBookshelf)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compressedBookshelf), "BBB", "BBB", "BBB", 'B', Blocks.BOOKSHELF));
+        if(MMConfig.enableDoubleCompressedBookshelf)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(doubleCompressedBookshelf), "BBB", "BBB", "BBB", 'B', compressedBookshelf));
+        if(MMConfig.enableEnchantingGenerator)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "BDB", "ETE", "BOB", 'B', Blocks.BOOKSHELF, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', Blocks.OBSIDIAN));
+        if(MMConfig.enableIceSpreader)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', Blocks.OBSIDIAN, 'I', Blocks.ICE, 'E', "gemEmerald"));
+        if(MMConfig.enableSpawnPreventer)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spawnPreventer), "PDT", "EBE", "SGZ", 'P', Items.ENDER_PEARL, 'D', Blocks.DIAMOND_BLOCK, 'T', Items.GHAST_TEAR, 'E', "gemEmerald", 'B', Items.BONE, 'S', Items.STRING, 'G', Items.GUNPOWDER, 'Z', Items.ROTTEN_FLESH));
+        if(MMConfig.enableDyeRecipes)
+            GameRegistry.addRecipe(new DyeRecipes());
+        if(MMConfig.enableAutoCrafter)
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(autoCrafter), "RSR", "SCS", "RSR", 'C', Blocks.CRAFTING_TABLE, 'S', "stone", 'R', "blockRedstone"));
     }
 
 

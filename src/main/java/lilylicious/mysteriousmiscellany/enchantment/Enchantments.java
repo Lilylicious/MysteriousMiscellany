@@ -6,10 +6,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Enchantments {
 
-    public static Enchantment grassStomping;
-
     public static void init() {
-        grassStomping = new EnchantGrassStomper();
+        Enchantment grassStomping = new EnchantGrassStomper();
         MinecraftForge.EVENT_BUS.register(grassStomping);
         GameRegistry.register(grassStomping);
     }

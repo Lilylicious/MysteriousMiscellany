@@ -7,9 +7,9 @@ import net.minecraft.item.ItemTool;
 import javax.annotation.Nonnull;
 import java.util.Set;
 
-public class ToolMM extends ItemTool {
+class ToolMM extends ItemTool {
 
-    protected ToolMM(float attackDamageIn, float attackSpeedIn, ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
+    ToolMM(float attackDamageIn, float attackSpeedIn, ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
         super(attackDamageIn, attackSpeedIn, materialIn, effectiveBlocksIn);
         this.setMaxStackSize(1);
     }
