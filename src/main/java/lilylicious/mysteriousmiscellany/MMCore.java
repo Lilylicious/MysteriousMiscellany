@@ -3,6 +3,7 @@ package lilylicious.mysteriousmiscellany;
 import lilylicious.mysteriousmiscellany.config.MMConfig;
 import lilylicious.mysteriousmiscellany.enchantment.Enchantments;
 import lilylicious.mysteriousmiscellany.events.BonemealEvents;
+import lilylicious.mysteriousmiscellany.events.InteractEvents;
 import lilylicious.mysteriousmiscellany.events.SpawnEvents;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
 import lilylicious.mysteriousmiscellany.proxies.IProxy;
@@ -23,7 +24,7 @@ public class MMCore {
 
     public static final String MODID = "MysteriousMiscellany";
     public static final String MODNAME = "Mysterious Miscellany";
-    public static final String VERSION = "1.10.2-1.4.6";
+    public static final String VERSION = "1.10.2-1.4.8";
 
     @Mod.Instance(MODID)
     public static MMCore instance;
@@ -43,6 +44,7 @@ public class MMCore {
 
         MinecraftForge.EVENT_BUS.register(new SpawnEvents());
         MinecraftForge.EVENT_BUS.register(new BonemealEvents());
+        MinecraftForge.EVENT_BUS.register(new InteractEvents());
         proxy.registerClientOnlyEvents();
         proxy.registerModels();
     }

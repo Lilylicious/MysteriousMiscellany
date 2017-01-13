@@ -1,9 +1,6 @@
 package lilylicious.mysteriousmiscellany.gameObjs.recipes;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHardenedClay;
-import net.minecraft.block.BlockStainedGlass;
-import net.minecraft.block.BlockStainedGlassPane;
+import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemDye;
@@ -24,19 +21,24 @@ public class DyeRecipes implements IRecipe {
     public boolean matches(@Nonnull InventoryCrafting inv, @Nonnull World world) {
         List<ItemStack> itemsToDye = new ArrayList<>();
         ItemStack dye = null;
+        ItemStack sand = null;
         boolean stainedGlass = false;
         boolean stainedGlassPane = false;
         boolean hardenedClay = false;
-
+        boolean carpet = false;
+        boolean wool = false;
 
         for (int i = 0; i < inv.getSizeInventory(); i++) {
             ItemStack input = inv.getStackInSlot(i);
 
+            //Removes the need for nullchecks in every if statement
             if (input == null) {
-                return false;
+                continue;
             } else if (input.getItem() instanceof ItemDye)
                 dye = input;
-            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlass) {
+            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockSand)
+                sand = input;
+            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlass || Block.getBlockFromItem(input.getItem()) instanceof BlockGlass) {
                 stainedGlass = true;
                 itemsToDye.add(input);
             }
@@ -48,21 +50,47 @@ public class DyeRecipes implements IRecipe {
                 hardenedClay = true;
                 itemsToDye.add(input);
             }
+            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockCarpet) {
+                carpet = true;
+                itemsToDye.add(input);
+            }
+            else if (Block.getBlockFromItem(input.getItem()) == Blocks.WOOL) {
+                wool = true;
+                itemsToDye.add(input);
+            }
         }
 
-        if (dye == null || itemsToDye.size() == 0) {
+        if ((sand == null && dye == null) || itemsToDye.size() == 0) {
             return false;
         }
 
-        if((stainedGlass && stainedGlassPane) || (stainedGlass && hardenedClay) || (stainedGlassPane && hardenedClay))
+        if(countTrue(stainedGlass, stainedGlassPane, hardenedClay, carpet, wool, dye != null, sand != null) > 2)
             return false;
 
-        if(stainedGlass)
-            output = new ItemStack(Blocks.STAINED_GLASS, itemsToDye.size(), 15-dye.getMetadata());
-        else if(stainedGlassPane)
-            output = new ItemStack(Blocks.STAINED_GLASS_PANE, itemsToDye.size(), 15-dye.getMetadata());
-        else if(hardenedClay)
-            output = new ItemStack(Blocks.STAINED_HARDENED_CLAY, itemsToDye.size(), 15-dye.getMetadata());
+        if(dye != null){
+            if(stainedGlass)
+                output = new ItemStack(Blocks.STAINED_GLASS, itemsToDye.size(), 15-dye.getMetadata());
+            else if(stainedGlassPane)
+                output = new ItemStack(Blocks.STAINED_GLASS_PANE, itemsToDye.size(), 15-dye.getMetadata());
+            else if(hardenedClay)
+                output = new ItemStack(Blocks.STAINED_HARDENED_CLAY, itemsToDye.size(), 15-dye.getMetadata());
+            else if(carpet)
+                output = new ItemStack(Blocks.CARPET, itemsToDye.size(), 15-dye.getMetadata());
+            else if(wool)
+                output = new ItemStack(Blocks.WOOL, itemsToDye.size(), 15-dye.getMetadata());
+        }
+        else if (sand != null){
+            if(stainedGlass)
+                output = new ItemStack(Blocks.GLASS, itemsToDye.size());
+            else if(stainedGlassPane)
+                output = new ItemStack(Blocks.GLASS_PANE, itemsToDye.size());
+            else if(hardenedClay)
+                output = new ItemStack(Blocks.HARDENED_CLAY, itemsToDye.size());
+            else if(carpet)
+                output = new ItemStack(Blocks.CARPET, itemsToDye.size());
+            else if(wool)
+                output = new ItemStack(Blocks.WOOL, itemsToDye.size());
+        }
 
         return true;
     }
@@ -86,5 +114,15 @@ public class DyeRecipes implements IRecipe {
     @Override
     public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
         return ForgeHooks.defaultRecipeGetRemainingItems(inv);
+    }
+
+    private int countTrue(boolean... booleans){
+        int sum = 0;
+        for (boolean b : booleans) {
+            if (b) {
+                sum++;
+            }
+        }
+        return sum;
     }
 }

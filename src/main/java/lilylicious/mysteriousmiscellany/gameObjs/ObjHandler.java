@@ -3,14 +3,12 @@ package lilylicious.mysteriousmiscellany.gameObjs;
 import lilylicious.mysteriousmiscellany.MMCore;
 import lilylicious.mysteriousmiscellany.config.MMConfig;
 import lilylicious.mysteriousmiscellany.gameObjs.blocks.*;
-import lilylicious.mysteriousmiscellany.gameObjs.items.EnchantBooster;
-import lilylicious.mysteriousmiscellany.gameObjs.items.FishStopper;
-import lilylicious.mysteriousmiscellany.gameObjs.items.InfusedFishStopper;
-import lilylicious.mysteriousmiscellany.gameObjs.items.WaterStopper;
+import lilylicious.mysteriousmiscellany.gameObjs.items.*;
 import lilylicious.mysteriousmiscellany.gameObjs.recipes.DyeRecipes;
 import lilylicious.mysteriousmiscellany.gameObjs.tiles.*;
 import lilylicious.mysteriousmiscellany.utils.MMLogger;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -29,6 +27,12 @@ public class ObjHandler {
     public static final Item enchantBooster = new EnchantBooster();
     public static final Item waterStopper = new WaterStopper();
 
+    public static final Item woodUnHoe = new UnHoe(Item.ToolMaterial.WOOD);
+    public static final Item stoneUnHoe = new UnHoe(Item.ToolMaterial.STONE);
+    public static final Item ironUnHoe = new UnHoe(Item.ToolMaterial.IRON);
+    public static final Item goldUnHoe = new UnHoe(Item.ToolMaterial.GOLD);
+    public static final Item diamondUnHoe = new UnHoe(Item.ToolMaterial.DIAMOND);
+
     public static final Block enchantmentAir = new EnchantmentAir();
     public static final Block compressedBookshelf = new CompressedBookshelf();
     public static final Block doubleCompressedBookshelf = new DoubleCompressedBookshelf();
@@ -43,6 +47,12 @@ public class ObjHandler {
         GameRegistry.register(infusedFishStopper, new ResourceLocation(MMCore.MODID, infusedFishStopper.getUnlocalizedName()));
         GameRegistry.register(enchantBooster, new ResourceLocation(MMCore.MODID, enchantBooster.getUnlocalizedName()));
         GameRegistry.register(waterStopper, new ResourceLocation(MMCore.MODID, waterStopper.getUnlocalizedName()));
+
+        GameRegistry.register(woodUnHoe, new ResourceLocation(MMCore.MODID, woodUnHoe.getUnlocalizedName()));
+        GameRegistry.register(stoneUnHoe, new ResourceLocation(MMCore.MODID, stoneUnHoe.getUnlocalizedName()));
+        GameRegistry.register(ironUnHoe, new ResourceLocation(MMCore.MODID, ironUnHoe.getUnlocalizedName()));
+        GameRegistry.register(goldUnHoe, new ResourceLocation(MMCore.MODID, goldUnHoe.getUnlocalizedName()));
+        GameRegistry.register(diamondUnHoe, new ResourceLocation(MMCore.MODID, diamondUnHoe.getUnlocalizedName()));
 
         //Blocks
         GameRegistry.register(enchantmentAir, new ResourceLocation(MMCore.MODID, enchantmentAir.getUnlocalizedName()));
@@ -76,7 +86,7 @@ public class ObjHandler {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(doubleCompressedBookshelf), "BBB", "BBB", "BBB", 'B', compressedBookshelf));
         if(MMConfig.enableEnchantingGenerator)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "BDB", "ETE", "BOB", 'B', Blocks.BOOKSHELF, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', Blocks.OBSIDIAN));
-        if(MMConfig.enableIceSpreader)
+        if(MMConfig.enableOceanAnnihalator)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', Blocks.OBSIDIAN, 'I', Blocks.ICE, 'E', "gemEmerald"));
         if(MMConfig.enableSpawnPreventer)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spawnPreventer), "PDT", "EBE", "SGZ", 'P', Items.ENDER_PEARL, 'D', Blocks.DIAMOND_BLOCK, 'T', Items.GHAST_TEAR, 'E', "gemEmerald", 'B', Items.BONE, 'S', Items.STRING, 'G', Items.GUNPOWDER, 'Z', Items.ROTTEN_FLESH));
@@ -84,6 +94,14 @@ public class ObjHandler {
             GameRegistry.addRecipe(new DyeRecipes());
         if(MMConfig.enableAutoCrafter)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(autoCrafter), "RSR", "SCS", "RSR", 'C', Blocks.CRAFTING_TABLE, 'S', "stone", 'R', "blockRedstone"));
+        if(MMConfig.enableUnHoe){
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(woodUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "plankWood"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stoneUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "cobblestone"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ironUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "ingotIron"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(goldUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "ingotGold"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(diamondUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "gemDiamond"));
+        }
+
     }
 
 

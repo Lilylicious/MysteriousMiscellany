@@ -40,10 +40,11 @@ public class MMConfig {
     public static boolean enableCompressedBookshelf;
     public static boolean enableDoubleCompressedBookshelf;
     public static boolean enableEnchantingGenerator;
-    public static boolean enableIceSpreader;
+    public static boolean enableOceanAnnihalator;
     public static boolean enableSpawnPreventer;
     public static boolean enableAutoCrafter;
     public static boolean enableDyeRecipes;
+    public static boolean enableUnHoe;
 
     public static void init(File configFile) {
         Configuration config = new Configuration(configFile);
@@ -58,8 +59,8 @@ public class MMConfig {
             destroyRadius = config.getInt("destroyRadius", "values", 3, 1, 64, "Radius of autoreplace");
             stopperDurability = config.getInt("stopperDurability", "values", 128, 0, Int.MaxValue(), "Durability of the tool. 0 for unlimited.");
             infusedStopperDurability = config.getInt("infusedStopperDurability", "values", 256, 0, Int.MaxValue(), "Durability of the tool. 0 for unlimited.");
-            spawnPreventionRadius = config.getInt("spawnPreventionRadius", "values", 32, 0, 128, "Radius for spawn prevention.");
-            spawnPreventionRadius = config.getInt("iceSpreaderRadius", "values", 16, 0, 128, "Radius for the ice spreader");
+            spawnPreventionRadius = config.getInt("spawnPreventionRadius", "values", 32, 1, 128, "Radius for spawn prevention.");
+            iceSpreaderRadius = config.getInt("iceSpreaderRadius", "values", 16, 1, 128, "Radius for the ice spreader");
 
             //Sounds
             preventServerWideBossSounds = config.getBoolean("preventServerWideBossSounds", "sounds", true, "Prevent dragons from playing death sounds outside the end.");
@@ -82,10 +83,11 @@ public class MMConfig {
             enableCompressedBookshelf = config.getBoolean("enableCompressedBookshelf", "items", true, "Enable the compressed bookshelf.");
             enableDoubleCompressedBookshelf = config.getBoolean("enableDoubleCompressedBookshelf", "items", true, "Enable the double compressed bookshelf.");
             enableEnchantingGenerator = config.getBoolean("enableEnchantingGenerator", "items", true, "Enable the enchanting generator");
-            enableIceSpreader = config.getBoolean("enableOceanAnnihalator", "items", true, "Enable the ocean annihalator");
+            enableOceanAnnihalator = config.getBoolean("enableOceanAnnihalator", "items", true, "Enable the ocean annihalator");
             enableSpawnPreventer = config.getBoolean("enableSpawnPreventer", "items", true, "Enable the spawn preventer");
             enableAutoCrafter = config.getBoolean("enableAutoCrafter", "items", true, "Enable the auto crafter");
             enableDyeRecipes = config.getBoolean("enableDyeRecipes", "items", true, "Enable the dye recipes");
+            enableUnHoe = config.getBoolean("enableUnHoe", "items", true, "Enable the UnHoes");
 
             MMLogger.logInfo("Loaded configuration file.");
         } catch (Exception e) {

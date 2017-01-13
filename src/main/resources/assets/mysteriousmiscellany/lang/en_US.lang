@@ -2,6 +2,12 @@ item.mm_fishstopper.name=Fishstopper
 item.mm_infusedFishstopper.name=Infused Fishstopper
 item.mm_enchantBooster.name=Enchant Booster
 item.mm_waterStopper.name=Waterstopper
+
+item.mm_unHoe_WOOD.name=Wood UnHoe
+item.mm_unHoe_STONE.name=Stone UnHoe
+item.mm_unHoe_IRON.name=Iron UnHoe
+item.mm_unHoe_GOLD.name=Gold UnHoe
+item.mm_unHoe_DIAMOND.name=Diamond UnHoe
 tile.mm_compressedBookshelf.name=Compressed Bookshelf
 tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf
 tile.mm_enchantingGenerator.name=Enchanting Generator
@@ -11,6 +17,18 @@ tile.mm_autoCrafter.name=Autocrafter
 
 enchantment.grassStomping=Grass Stomping
 
-jei.dyerecipes=You can dye however many items you want of this type using a single dye and any amount of the item.
+jei.dyerecipes=You can dye however many items you want of this type using a single dye and any amount of the item. Using sand instead of dye turns it into the base block.
+
+
+
+jei.fishStopper=The Fish Stopper will show you monster eggs, and allow you to right click to remove
+jei.infusedFishStopper=Same as the Fish Stopper, but with a shift click AOE mode.
+jei.enchantBooster=Simply approach an enchanting table with this in your inventory to give it full power.
+jei.waterStopper=Active with shift click to activate, removes water nearby.
+jei.unHoe=Use like a hoe to make farmland into dirt.
+jei.compressedBookshelf=Functions like a bookshelf, except with 9x the enchanting power.
+jei.doubleCompressedBookshelf=Functions like a bookshelf, except with 81x the enchanting power.
+jei.enchantingGenerator=Generates RF from enchanting power. Place bookshelves like you would around an enchanting table.
 jei.iceSpreader=This block removes water blocks in a large radius, placing ice along the edges to prevent flowing water.
+jei.spawnPreventer=Prevents spawn in a radius. Default 32 radius.
 jei.autoCrafter=Put in items with a 1x1 recipe and get out the result.

@@ -1,3 +1,14 @@
+###Version 1.10.2-1.4.8
+*ADDED: Dye recipes now work for wool and carpets.
+*ADDED: Dyes can now be used on blocks in the world (Glass(Stained and Pane), wool, carpet, hardened clay).
+*ADDED: Sand + Dyeable items will now craft into the undyed version.
+*ADDED: Descriptions for all items in JEI
+*ADDED: UnHoe's! Simply use like you would a normal hoe, only in reverse. Farmland turns into dirt.
+
+###Version 1.10.2-1.4.7
+*FIXED: Ocean Annihalator now annihalates properly.
+*FIXED: Dye recipes now work properly.
+
 ###Version 1.10.2-1.4.6
 *ADDED: Autocrafter. Only crafts 1x1 recipes.
 *RENAMED: Ice Spreader is now called Ocean Annihalator.
