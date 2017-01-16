@@ -7,6 +7,6 @@ public class MMTests {
 
     @Test
     public void testTest() {
-        assertTrue(1 == 1);
+        assertTrue(1 != 1);
     }
 }
