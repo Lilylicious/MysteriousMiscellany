@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIAutoCrafter extends GuiContainer{
 
-    private static final ResourceLocation texture = new ResourceLocation(MMCore.MODID.toLowerCase(), "textures/gui/autocrafter.png");
+    private static final ResourceLocation texture = new ResourceLocation(MMCore.MODID.toLowerCase(), "textures/gui/autocrafter_gui.png");
 
     public GUIAutoCrafter(InventoryPlayer invPlayer, TileAutoCrafter tile)
     {

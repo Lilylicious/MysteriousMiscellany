@@ -1,3 +1,12 @@
+###Version 1.10.2-1.4.11
+*RENAMED: Autocrafter is now Singlecrafter.
+
+###Version 1.10.2-1.4.10
+*FIXED: On launch crash bug fixed.
+
+###Version 1.10.2-1.4.9
+*FIXED: More intelligent handling of automated input/output of the autocrafter. Also changed gui.
+
 ###Version 1.10.2-1.4.8
 *ADDED: Dye recipes now work for wool and carpets.
 *ADDED: Dyes can now be used on blocks in the world (Glass(Stained and Pane), wool, carpet, hardened clay).

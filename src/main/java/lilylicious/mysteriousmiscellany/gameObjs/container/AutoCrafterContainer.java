@@ -22,15 +22,20 @@ public class AutoCrafterContainer extends Container{
 
         IItemHandler inv = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-        //Input grid, ID's 0-8
-        for (int y = 0; y < 3; y++)
-            for (int x = 0; x < 3; x++)
-                this.addSlotToContainer(new SlotItemHandler(inv, x + y * 3, 17 + x * 18, 27 + y * 18));
+        //Input grid, ID's 0
+        //for (int y = 0; y < 3; y++)
+            //for (int x = 0; x < 3; x++)
+                this.addSlotToContainer(new SlotItemHandler(inv, 0, 80, 13));
 
-        //Output grid, ID's 9-17
-        for (int y = 0; y < 3; y++)
-            for (int x = 0; x < 3; x++)
-                this.addSlotToContainer(new SlotItemHandler(inv, 9 + x + y * 3, 107 + x * 18, 27 + y * 18));
+        //Output grid, ID's 1-10
+        for (int y = 0; y < 2; y++)
+            for (int x = 0; x < 5; x++)
+                this.addSlotToContainer(new SlotItemHandler(inv, 1 + x + y * 5, 44 + x * 18, 56 + y * 18){
+                    @Override
+                    public boolean isItemValid(ItemStack par1ItemStack) {
+                        return false;
+                    }
+                });
 
         //Player Inventory 18-44
         for(int y = 0; y < 3; y++)
@@ -55,14 +60,14 @@ public class AutoCrafterContainer extends Container{
         ItemStack stack = slot.getStack();
         ItemStack newStack = stack.copy();
 
-        if (slotIndex < 18)
+        if (slotIndex < 11)
         {
-            if (!this.mergeItemStack(stack, 18, this.inventorySlots.size(), false))
+            if (!this.mergeItemStack(stack, 11, this.inventorySlots.size(), false))
             {
                 return null;
             }
         }
-        else if (!this.mergeItemStack(stack, 0, 8, false))
+        else if (!this.mergeItemStack(stack, 0, 1, false))
         {
             return null;
         }
