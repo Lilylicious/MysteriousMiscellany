@@ -65,7 +65,6 @@ public class InteractEvents {
             if(e.getWorld().getBlockState(e.getPos()) == result)
                 return;
 
-            //TODO: Check if this works as intended, splitstack rather than stacksize--
             dyeStack.splitStack(1);
             e.getWorld().setBlockState(e.getPos(), result);
         }

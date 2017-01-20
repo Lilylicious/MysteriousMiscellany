@@ -97,7 +97,6 @@ public class TileAutoCrafter extends TileEntity implements ITickable {
 
         if (!output.isEmpty()) {
             ItemStack newInput = input.copy();
-            //TODO: Does this remove one from stack?
             newInput.splitStack(1);
             if (newInput.getCount() <= 0)
                 newInput = ItemStack.EMPTY;

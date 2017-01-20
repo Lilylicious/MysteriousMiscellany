@@ -49,7 +49,6 @@ public class EnchantmentGenerator extends Block implements ITileEntityProvider {
         if (!world.isRemote) {
             TileEnchantmentGenerator generator = (TileEnchantmentGenerator) world.getTileEntity(pos);
 
-            //TODO: Check if sendMessage works as addChatMessage
             if (!generator.isWorking())
                 player.sendMessage(new TextComponentString("Adjacent block interfering!"));
             else {
