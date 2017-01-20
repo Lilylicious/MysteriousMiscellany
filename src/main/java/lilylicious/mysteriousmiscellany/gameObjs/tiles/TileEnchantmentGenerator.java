@@ -14,7 +14,7 @@ import net.minecraftforge.common.ForgeHooks;
 public class TileEnchantmentGenerator extends TileEntity implements IEnergyProvider, ITickable {
 
     private final EnergyStorage storage = new EnergyStorage(10000);
-    private int power = 0;
+    private int ePower = 0;
     private int generated = 0;
 
     @Override
@@ -23,17 +23,17 @@ public class TileEnchantmentGenerator extends TileEntity implements IEnergyProvi
         if (isWorking()) {
 
             if (!this.getWorld().isRemote) {
-                power = 0;
+                ePower = 0;
                 for (int j = -1; j <= 1; ++j) {
                     for (int k = -1; k <= 1; ++k) {
                         if (j != 0 || k != 0) {
-                            power += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 0, j * 2));
-                            power += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 1, j * 2));
+                            ePower += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 0, j * 2));
+                            ePower += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 1, j * 2));
                             if (k != 0 && j != 0) {
-                                power += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 0, j));
-                                power += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 1, j));
-                                power += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k, 0, j * 2));
-                                power += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k, 1, j * 2));
+                                ePower += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 0, j));
+                                ePower += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k * 2, 1, j));
+                                ePower += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k, 0, j * 2));
+                                ePower += ForgeHooks.getEnchantPower(this.getWorld(), this.getPos().add(k, 1, j * 2));
                             }
                         }
                     }
@@ -41,12 +41,11 @@ public class TileEnchantmentGenerator extends TileEntity implements IEnergyProvi
 
 
                 //Thank you Blubberbub for figuring out this equation!
-                if (power > 0)
-                    generated = (int) (Math.pow(2, (Math.log(((double) power) / 32) / Math.log(9))) * 10);
+                if (ePower > 0)
+                    generated = (int) (Math.pow(2, (Math.log(((double) ePower) / 32) / Math.log(9))) * 10);
+                else
+                    generated = 0;
 
-            }
-
-            if (power > 0) {
                 this.storage.receiveEnergy(generated, false);
             }
 
