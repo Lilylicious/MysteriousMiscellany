@@ -42,7 +42,7 @@ public class DyeRecipes implements IRecipe {
                 stainedGlass = true;
                 itemsToDye.add(input);
             }
-            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlassPane) {
+            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlassPane || Block.getBlockFromItem(input.getItem()) instanceof BlockPane) {
                 stainedGlassPane = true;
                 itemsToDye.add(input);
             }
