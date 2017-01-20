@@ -45,14 +45,16 @@ public class EnchantmentGenerator extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing par6, float par7, float par8, float par9) {
         if (!world.isRemote) {
             TileEnchantmentGenerator generator = (TileEnchantmentGenerator) world.getTileEntity(pos);
+
+            //TODO: Check if sendMessage works as addChatMessage
             if (!generator.isWorking())
-                player.addChatMessage(new TextComponentString("Adjacent block interfering!"));
+                player.sendMessage(new TextComponentString("Adjacent block interfering!"));
             else {
-                player.addChatMessage(new TextComponentString(generator.getEnergyStored(null) + "/" + generator.getMaxEnergyStored(null) + " RF"));
-                player.addChatMessage(new TextComponentString(generator.getEnergyPerTick() + " RF/Tick"));
+                player.sendMessage(new TextComponentString(generator.getEnergyStored(null) + "/" + generator.getMaxEnergyStored(null) + " RF"));
+                player.sendMessage(new TextComponentString(generator.getEnergyPerTick() + " RF/Tick"));
             }
             return true;
         }

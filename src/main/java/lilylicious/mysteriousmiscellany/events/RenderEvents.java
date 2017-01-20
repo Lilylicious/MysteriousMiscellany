@@ -12,20 +12,21 @@ public class RenderEvents {
     @SubscribeEvent
     public void renderWorldLastEvent(RenderWorldLastEvent evt) {
         Minecraft mc = Minecraft.getMinecraft();
-        EntityPlayerSP p = mc.thePlayer;
-        ItemStack itemStack = null;
+        EntityPlayerSP p = mc.player;
+        ItemStack itemStack = ItemStack.EMPTY;
 
         for (ItemStack s : p.inventory.mainInventory) {
-            if (s != null && s.getItem() instanceof FishStopper) {
+            if (!s.isEmpty() && s.getItem() instanceof FishStopper) {
                 itemStack = s;
             }
         }
 
-        ItemStack offHandItem = p.inventory.offHandInventory[0];
-        if (offHandItem != null && offHandItem.getItem() instanceof FishStopper) {
+        ItemStack offHandItem = p.inventory.offHandInventory.get(0);
+        if (!offHandItem.isEmpty() && offHandItem.getItem() instanceof FishStopper) {
             itemStack = offHandItem;
         }
-        if (itemStack == null) {
+
+        if (itemStack.isEmpty()) {
             return;
         }
 

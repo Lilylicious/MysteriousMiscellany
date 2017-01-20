@@ -24,7 +24,7 @@ public class InteractEvents {
         boolean carpet = false;
         boolean wool = false;
 
-        if(dyeStack == null || block == null)
+        if(dyeStack.isEmpty() || block == null)
             return;
 
         if(!e.getWorld().isRemote && Predicates.IS_DYEABLE.test(block)){
@@ -65,7 +65,8 @@ public class InteractEvents {
             if(e.getWorld().getBlockState(e.getPos()) == result)
                 return;
 
-            dyeStack.stackSize--;
+            //TODO: Check if this works as intended, splitstack rather than stacksize--
+            dyeStack.splitStack(1);
             e.getWorld().setBlockState(e.getPos(), result);
         }
     }

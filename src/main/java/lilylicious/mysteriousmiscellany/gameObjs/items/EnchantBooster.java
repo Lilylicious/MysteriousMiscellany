@@ -61,7 +61,7 @@ public class EnchantBooster extends ItemMM {
         }
         if (foundAir) {
             for (BlockPos pos : savedPositions) {
-                WorldHelper.replaceBlock(player, player.worldObj, pos, Blocks.AIR, ObjHandler.enchantmentAir.getDefaultState());
+                WorldHelper.replaceBlock(player, player.world, pos, Blocks.AIR, ObjHandler.enchantmentAir.getDefaultState());
             }
         }
         if (!foundTable) {

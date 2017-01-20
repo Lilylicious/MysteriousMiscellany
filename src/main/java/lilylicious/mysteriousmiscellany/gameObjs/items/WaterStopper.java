@@ -39,7 +39,7 @@ public class WaterStopper extends ToolMM {
             Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, radius);
 
             for (BlockPos blockPos : iterable) {
-                IBlockState blockState = player.worldObj.getBlockState(blockPos);
+                IBlockState blockState = player.world.getBlockState(blockPos);
                 IBlockState targetState = Blocks.AIR.getDefaultState();
                 if (Predicates.IS_WATER.test(blockState.getBlock()) || Predicates.ICE_NOT_ICE.test(blockState.getBlock(), targetState.getBlock()))
                     WorldHelper.replaceBlock(player, world, blockPos, null, targetState);
@@ -50,14 +50,14 @@ public class WaterStopper extends ToolMM {
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if (!world.isRemote) {
             if (player.isSneaking()) {
                 active = !active;
             }
         }
 
-        return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
+        return ActionResult.newResult(EnumActionResult.SUCCESS, player.getActiveItemStack());
     }
 
     @Override

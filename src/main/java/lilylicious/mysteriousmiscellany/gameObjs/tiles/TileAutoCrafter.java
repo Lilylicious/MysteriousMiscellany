@@ -27,7 +27,7 @@ public class TileAutoCrafter extends TileEntity implements ITickable {
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate)
         {
-            return null;
+            return ItemStack.EMPTY;
         }
     };;
     private final RangedWrapper outputSlots = new RangedWrapper(inventory, 1, 11){
@@ -93,42 +93,43 @@ public class TileAutoCrafter extends TileEntity implements ITickable {
         ItemStack input = inputSlot.getStackInSlot(0);
 
         inv.setInventorySlotContents(0, input);
-        output = CraftingManager.getInstance().findMatchingRecipe(inv, worldObj);
+        output = CraftingManager.getInstance().findMatchingRecipe(inv, world);
 
-        if (output != null) {
+        if (!output.isEmpty()) {
             ItemStack newInput = input.copy();
-            newInput.stackSize -= 1;
-            if (newInput.stackSize <= 0)
-                newInput = null;
+            //TODO: Does this remove one from stack?
+            newInput.splitStack(1);
+            if (newInput.getCount() <= 0)
+                newInput = ItemStack.EMPTY;
 
 
-            while (output != null && attempts++ < 5) {
+            while (!output.isEmpty() && attempts++ < 5) {
                 for (int k = 0; k < outputSlots.getSlots(); k++) {
 
                     ItemStack inSlot = outputSlots.getStackInSlot(k);
 
-                    if (inSlot == null) {
+                    if (inSlot.isEmpty()) {
                         inputSlot.setStackInSlot(0, newInput);
                         outputSlots.setStackInSlot(k, output);
-                        output = null;
-                    } else if (inSlot.isItemEqual(output) && ItemStack.areItemStackTagsEqual(inSlot, output) && inSlot.isStackable() && inSlot.stackSize < inSlot.getMaxStackSize()) {
+                        output = ItemStack.EMPTY;
+                    } else if (inSlot.isItemEqual(output) && ItemStack.areItemStackTagsEqual(inSlot, output) && inSlot.isStackable() && inSlot.getCount() < inSlot.getMaxStackSize()) {
                         ItemStack copy = inSlot.copy();
-                        copy.stackSize += output.stackSize;
+                        copy.setCount(copy.getCount() + output.getCount());
 
-                        if (!(k == 8 && copy.stackSize > copy.getMaxStackSize())) {
-                            if (copy.stackSize > copy.getMaxStackSize()) {
+                        if (!(k == 8 && copy.getCount() > copy.getMaxStackSize())) {
+                            if (copy.getCount() > copy.getMaxStackSize()) {
                                 ItemStack overflow = copy.copy();
-                                overflow.stackSize = copy.stackSize - copy.getMaxStackSize();
-                                copy.stackSize = copy.getMaxStackSize();
+                                overflow.setCount(copy.getCount() - copy.getMaxStackSize());
+                                copy.setCount(copy.getMaxStackSize());
                                 output = overflow;
                             } else
-                                output = null;
+                                output = ItemStack.EMPTY;
 
                             inputSlot.setStackInSlot(0, newInput);
                             outputSlots.setStackInSlot(k, copy);
                         }
                     }
-                    if (output == null){
+                    if (output.isEmpty()){
                         attempts = 0;
                         break;
                     }

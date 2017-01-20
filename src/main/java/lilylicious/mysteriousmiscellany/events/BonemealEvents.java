@@ -16,7 +16,7 @@ public class BonemealEvents {
         if(blockstate.getBlock() instanceof BlockFlower){
             EntityItem ei = new EntityItem(evt.getWorld(), evt.getPos().getX(), evt.getPos().getY(), evt.getPos().getZ(), new ItemStack(evt.getBlock().getBlock()));
             if(!evt.getWorld().isRemote){
-                evt.getWorld().spawnEntityInWorld(ei);
+                evt.getWorld().spawnEntity(ei);
                 evt.setResult(Event.Result.ALLOW);
             }
         }

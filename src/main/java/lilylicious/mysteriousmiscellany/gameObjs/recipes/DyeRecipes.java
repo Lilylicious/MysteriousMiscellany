@@ -6,6 +6,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -20,8 +21,8 @@ public class DyeRecipes implements IRecipe {
     @Override
     public boolean matches(@Nonnull InventoryCrafting inv, @Nonnull World world) {
         List<ItemStack> itemsToDye = new ArrayList<>();
-        ItemStack dye = null;
-        ItemStack sand = null;
+        ItemStack dye = ItemStack.EMPTY;
+        ItemStack sand = ItemStack.EMPTY;
         boolean stainedGlass = false;
         boolean stainedGlassPane = false;
         boolean hardenedClay = false;
@@ -32,7 +33,7 @@ public class DyeRecipes implements IRecipe {
             ItemStack input = inv.getStackInSlot(i);
 
             //Removes the need for nullchecks in every if statement
-            if (input == null) {
+            if (input.isEmpty()) {
                 continue;
             } else if (input.getItem() instanceof ItemDye)
                 dye = input;
@@ -60,14 +61,14 @@ public class DyeRecipes implements IRecipe {
             }
         }
 
-        if ((sand == null && dye == null) || itemsToDye.size() == 0) {
+        if ((sand.isEmpty() && dye.isEmpty()) || itemsToDye.size() == 0) {
             return false;
         }
 
-        if(countTrue(stainedGlass, stainedGlassPane, hardenedClay, carpet, wool, dye != null, sand != null) > 2)
+        if(countTrue(stainedGlass, stainedGlassPane, hardenedClay, carpet, wool, !dye.isEmpty(), !sand.isEmpty()) > 2)
             return false;
 
-        if(dye != null){
+        if(!dye.isEmpty()){
             if(stainedGlass)
                 output = new ItemStack(Blocks.STAINED_GLASS, itemsToDye.size(), 15-dye.getMetadata());
             else if(stainedGlassPane)
@@ -79,7 +80,7 @@ public class DyeRecipes implements IRecipe {
             else if(wool)
                 output = new ItemStack(Blocks.WOOL, itemsToDye.size(), 15-dye.getMetadata());
         }
-        else if (sand != null){
+        else if (sand.isEmpty()){
             if(stainedGlass)
                 output = new ItemStack(Blocks.GLASS, itemsToDye.size());
             else if(stainedGlassPane)
@@ -112,7 +113,7 @@ public class DyeRecipes implements IRecipe {
 
     @Nonnull
     @Override
-    public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
+    public NonNullList<ItemStack> getRemainingItems(@Nonnull InventoryCrafting inv) {
         return ForgeHooks.defaultRecipeGetRemainingItems(inv);
     }
 

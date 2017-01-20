@@ -24,9 +24,9 @@ import java.io.File;
 @Mod(modid = MMCore.MODID, name = MMCore.MODNAME, version = MMCore.VERSION)
 public class MMCore {
 
-    public static final String MODID = "MysteriousMiscellany";
+    public static final String MODID = "mysteriousmiscellany";
     public static final String MODNAME = "Mysterious Miscellany";
-    public static final String VERSION = "1.10.2-1.4.10";
+    public static final String VERSION = "1.11.2-1.0.0";
 
     @Mod.Instance(MODID)
     public static MMCore instance;

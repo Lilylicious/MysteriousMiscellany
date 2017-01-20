@@ -10,7 +10,7 @@ public class PlaySoundEvents {
 
     @SubscribeEvent
     public void playSoundEvent(PlaySoundEvent evt) {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = Minecraft.getMinecraft().player;
 
         //MMLogger.logInfo(evt.getName());
 

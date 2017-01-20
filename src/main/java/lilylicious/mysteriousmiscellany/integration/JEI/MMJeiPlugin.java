@@ -9,6 +9,7 @@ import mezz.jei.api.JEIPlugin;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -19,12 +20,12 @@ public class MMJeiPlugin extends BlankModPlugin {
 
     @Override
     public void register(@Nonnull IModRegistry registry) {
-        List<ItemStack> stainedGlass = new ArrayList<>();
-        List<ItemStack> stainedGlassPanes = new ArrayList<>();
-        List<ItemStack> hardenedClay = new ArrayList<>();
-        List<ItemStack> carpets = new ArrayList<>();
-        List<ItemStack> wool = new ArrayList<>();
-        List<ItemStack> unHoes = new ArrayList<>();
+        NonNullList<ItemStack> stainedGlass = NonNullList.create();
+        NonNullList<ItemStack> stainedGlassPanes = NonNullList.create();
+        NonNullList<ItemStack> hardenedClay = NonNullList.create();
+        NonNullList<ItemStack> carpets = NonNullList.create();
+        NonNullList<ItemStack> wool = NonNullList.create();
+        NonNullList<ItemStack> unHoes = NonNullList.create();
 
         unHoes.add(new ItemStack(ObjHandler.woodUnHoe));
         unHoes.add(new ItemStack(ObjHandler.stoneUnHoe));

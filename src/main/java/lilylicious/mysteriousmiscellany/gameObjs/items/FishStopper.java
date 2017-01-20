@@ -140,13 +140,13 @@ public class FishStopper extends ToolMM {
 
     @Nonnull
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing sideHit, float px, float py, float pz) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing sideHit, float px, float py, float pz) {
 
         if (world.isRemote) {
             return EnumActionResult.SUCCESS;
         }
 
-        replaceEgg(stack, world, player, pos);
+        replaceEgg(player.getActiveItemStack(), world, player, pos);
 
         return EnumActionResult.SUCCESS;
     }
@@ -187,7 +187,7 @@ public class FishStopper extends ToolMM {
         Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, radius);
 
         for (BlockPos blockPos : iterable) {
-            IBlockState blockState = player.worldObj.getBlockState(blockPos);
+            IBlockState blockState = player.world.getBlockState(blockPos);
 
             if (blockState.getBlock() == Blocks.MONSTER_EGG) {
 

@@ -22,15 +22,15 @@ public class UnHoe extends ItemHoe{
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
+        if (!player.canPlayerEdit(pos.offset(facing), facing, player.getActiveItemStack()))
         {
             return EnumActionResult.FAIL;
         }
         else
         {
-            int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, player, world, pos);
+            int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(player.getActiveItemStack(), player, world, pos);
             if (hook != 0) return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
 
             IBlockState iblockstate = world.getBlockState(pos);
@@ -40,7 +40,12 @@ public class UnHoe extends ItemHoe{
             {
                 if (block == Blocks.FARMLAND)
                 {
-                    this.setBlock(stack, player, world, pos, Blocks.DIRT.getDefaultState());
+                    this.setBlock(player.getActiveItemStack(), player, world, pos, Blocks.DIRT.getDefaultState());
+                    return EnumActionResult.SUCCESS;
+                }
+                else if (block == Blocks.GRASS || block == Blocks.GRASS_PATH)
+                {
+                    this.setBlock(player.getActiveItemStack(), player, world, pos, Blocks.DIRT.getDefaultState());
                     return EnumActionResult.SUCCESS;
                 }
             }

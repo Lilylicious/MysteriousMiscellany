@@ -15,9 +15,7 @@ import java.util.Set;
 public class GuiHandler implements IGuiHandler {
 
     //IDs for non-tile GUIs
-    private static final Set<Integer> ITEM_IDS = ImmutableSet.of(
-
-    );
+    private static final Set<Integer> ITEM_IDS = ImmutableSet.of();
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {

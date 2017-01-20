@@ -25,9 +25,9 @@ public class SpawnEvents {
                 TileSpawnPreventer preventer = it.next();
                 if (preventer.isInvalid())
                     it.remove();
-                else if (preventer.getWorld().provider.getDimension() == evt.getEntity().worldObj.provider.getDimension() && preventer.getDistanceSq(evt.getEntity().posX, evt.getEntity().posY, evt.getEntity().posZ) <= preventer.getRadiusSquared()) {
+                else if (preventer.getWorld().provider.getDimension() == evt.getEntity().world.provider.getDimension() && preventer.getDistanceSq(evt.getEntity().posX, evt.getEntity().posY, evt.getEntity().posZ) <= preventer.getRadiusSquared()) {
                     evt.setResult(Event.Result.DENY);
-                    MMLogger.logInfo("Prevented spawn of " + evt.getEntity().getName());
+                    //MMLogger.logInfo("Prevented spawn of " + evt.getEntity().getName());
                 }
 
             }
