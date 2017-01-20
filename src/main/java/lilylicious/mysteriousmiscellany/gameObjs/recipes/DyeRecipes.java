@@ -16,13 +16,13 @@ import java.util.List;
 
 public class DyeRecipes implements IRecipe {
 
-    private ItemStack output;
+    private ItemStack output = ItemStack.EMPTY;
 
     @Override
     public boolean matches(@Nonnull InventoryCrafting inv, @Nonnull World world) {
         List<ItemStack> itemsToDye = new ArrayList<>();
-        ItemStack dye = ItemStack.EMPTY;
-        ItemStack sand = ItemStack.EMPTY;
+        List<ItemStack> dyes = new ArrayList<>();
+        List<ItemStack> sand = new ArrayList<>();
         boolean stainedGlass = false;
         boolean stainedGlassPane = false;
         boolean hardenedClay = false;
@@ -36,14 +36,14 @@ public class DyeRecipes implements IRecipe {
             if (input.isEmpty()) {
                 continue;
             } else if (input.getItem() instanceof ItemDye)
-                dye = input;
+                dyes.add(input);
             else if (Block.getBlockFromItem(input.getItem()) instanceof BlockSand)
-                sand = input;
+                sand.add(input);
             else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlass || Block.getBlockFromItem(input.getItem()) instanceof BlockGlass) {
                 stainedGlass = true;
                 itemsToDye.add(input);
             }
-            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlassPane) {
+            else if (Block.getBlockFromItem(input.getItem()) instanceof BlockStainedGlassPane || Block.getBlockFromItem(input.getItem()) instanceof BlockPane) {
                 stainedGlassPane = true;
                 itemsToDye.add(input);
             }
@@ -61,26 +61,26 @@ public class DyeRecipes implements IRecipe {
             }
         }
 
-        if ((sand.isEmpty() && dye.isEmpty()) || itemsToDye.size() == 0) {
+        if ((sand.isEmpty() && dyes.isEmpty() || dyes.size() > 1 || sand.size() > 1) || itemsToDye.size() == 0) {
             return false;
         }
 
-        if(countTrue(stainedGlass, stainedGlassPane, hardenedClay, carpet, wool, !dye.isEmpty(), !sand.isEmpty()) > 2)
+        if(countTrue(stainedGlass, stainedGlassPane, hardenedClay, carpet, wool, !dyes.isEmpty(), !sand.isEmpty()) > 2)
             return false;
 
-        if(!dye.isEmpty()){
+        if(!dyes.isEmpty()){
             if(stainedGlass)
-                output = new ItemStack(Blocks.STAINED_GLASS, itemsToDye.size(), 15-dye.getMetadata());
+                output = new ItemStack(Blocks.STAINED_GLASS, itemsToDye.size(), 15-dyes.get(0).getMetadata());
             else if(stainedGlassPane)
-                output = new ItemStack(Blocks.STAINED_GLASS_PANE, itemsToDye.size(), 15-dye.getMetadata());
+                output = new ItemStack(Blocks.STAINED_GLASS_PANE, itemsToDye.size(), 15-dyes.get(0).getMetadata());
             else if(hardenedClay)
-                output = new ItemStack(Blocks.STAINED_HARDENED_CLAY, itemsToDye.size(), 15-dye.getMetadata());
+                output = new ItemStack(Blocks.STAINED_HARDENED_CLAY, itemsToDye.size(), 15-dyes.get(0).getMetadata());
             else if(carpet)
-                output = new ItemStack(Blocks.CARPET, itemsToDye.size(), 15-dye.getMetadata());
+                output = new ItemStack(Blocks.CARPET, itemsToDye.size(), 15-dyes.get(0).getMetadata());
             else if(wool)
-                output = new ItemStack(Blocks.WOOL, itemsToDye.size(), 15-dye.getMetadata());
+                output = new ItemStack(Blocks.WOOL, itemsToDye.size(), 15-dyes.get(0).getMetadata());
         }
-        else if (sand.isEmpty()){
+        else if (!sand.isEmpty()){
             if(stainedGlass)
                 output = new ItemStack(Blocks.GLASS, itemsToDye.size());
             else if(stainedGlassPane)

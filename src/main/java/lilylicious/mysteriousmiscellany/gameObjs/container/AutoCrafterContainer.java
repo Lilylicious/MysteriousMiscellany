@@ -54,7 +54,7 @@ public class AutoCrafterContainer extends Container{
 
         if (slot == null || !slot.getHasStack())
         {
-            return null;
+            return ItemStack.EMPTY;
         }
 
         ItemStack stack = slot.getStack();
@@ -64,12 +64,12 @@ public class AutoCrafterContainer extends Container{
         {
             if (!this.mergeItemStack(stack, 11, this.inventorySlots.size(), false))
             {
-                return null;
+                return ItemStack.EMPTY;
             }
         }
         else if (!this.mergeItemStack(stack, 0, 1, false))
         {
-            return null;
+            return ItemStack.EMPTY;
         }
 
         if (stack.getCount() == 0)

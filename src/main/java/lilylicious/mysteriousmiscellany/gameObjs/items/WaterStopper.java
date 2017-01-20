@@ -57,7 +57,7 @@ public class WaterStopper extends ToolMM {
             }
         }
 
-        return ActionResult.newResult(EnumActionResult.SUCCESS, player.getActiveItemStack());
+        return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
     @Override
