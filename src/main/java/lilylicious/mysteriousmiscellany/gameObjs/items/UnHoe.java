@@ -43,6 +43,11 @@ public class UnHoe extends ItemHoe{
                     this.setBlock(stack, player, world, pos, Blocks.DIRT.getDefaultState());
                     return EnumActionResult.SUCCESS;
                 }
+                else if (block == Blocks.GRASS || block == Blocks.GRASS_PATH)
+                {
+                    this.setBlock(stack, player, world, pos, Blocks.DIRT.getDefaultState());
+                    return EnumActionResult.SUCCESS;
+                }
             }
 
             return EnumActionResult.PASS;

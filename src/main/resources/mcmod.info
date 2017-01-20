@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "mysteriousmiscellany",
+  "name": "Mysterious Miscellany",
+  "description": "Mysterious Miscellany.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Lilylicious"],
+  "credits": "Blubberbub for help with math.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
