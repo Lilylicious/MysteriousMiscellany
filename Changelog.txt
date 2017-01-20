@@ -1,4 +1,11 @@
+###Version 1.10.2-1.4.12
+*FIXED: Broken textures for unhoes are now not broken..
+
 ###Version 1.10.2-1.4.11
+*ADDED: UnHoe's now turn grass and grass paths into dirt.
+*FIXED: Singlecrafter drops items when broken.
+*FIXED: Enchanting Generator updates the display of RF generation properly.
+*FIXED: Dye recipes now see glass panes properly.
 *RENAMED: Autocrafter is now Singlecrafter.
 
 ###Version 1.10.2-1.4.10
