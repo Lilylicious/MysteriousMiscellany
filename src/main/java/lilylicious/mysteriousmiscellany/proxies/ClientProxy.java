@@ -39,6 +39,8 @@ public class ClientProxy implements IProxy {
         registerItem(ObjHandler.goldUnHoe);
         registerItem(ObjHandler.diamondUnHoe);
 
+        registerItem(ObjHandler.stompingBoots);
+
         registerBlock(ObjHandler.compressedBookshelf);
         registerBlock(ObjHandler.doubleCompressedBookshelf);
         registerBlock(ObjHandler.enchantingGenerator);

@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "mysteriousmiscellany:stomping_boots",
+        "layer1": "mysteriousmiscellany:stomping_boots_overlay"
+    }
+}

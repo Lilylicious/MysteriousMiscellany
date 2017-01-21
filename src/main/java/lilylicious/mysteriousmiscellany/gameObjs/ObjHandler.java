@@ -33,6 +33,8 @@ public class ObjHandler {
     public static final Item goldUnHoe = new UnHoe(Item.ToolMaterial.GOLD);
     public static final Item diamondUnHoe = new UnHoe(Item.ToolMaterial.DIAMOND);
 
+    public static final Item stompingBoots = new StompingBoots();
+
     public static final Block enchantmentAir = new EnchantmentAir();
     public static final Block compressedBookshelf = new CompressedBookshelf();
     public static final Block doubleCompressedBookshelf = new DoubleCompressedBookshelf();
@@ -53,6 +55,8 @@ public class ObjHandler {
         GameRegistry.register(ironUnHoe, new ResourceLocation(MMCore.MODID, ironUnHoe.getUnlocalizedName()));
         GameRegistry.register(goldUnHoe, new ResourceLocation(MMCore.MODID, goldUnHoe.getUnlocalizedName()));
         GameRegistry.register(diamondUnHoe, new ResourceLocation(MMCore.MODID, diamondUnHoe.getUnlocalizedName()));
+
+        GameRegistry.register(stompingBoots, new ResourceLocation(MMCore.MODID, stompingBoots.getUnlocalizedName()));
 
         //Blocks
         GameRegistry.register(enchantmentAir, new ResourceLocation(MMCore.MODID, enchantmentAir.getUnlocalizedName()));
@@ -100,6 +104,12 @@ public class ObjHandler {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ironUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "ingotIron"));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(goldUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "ingotGold"));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(diamondUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "gemDiamond"));
+        }
+        if(MMConfig.enableGrassStompingEnchant){
+
+            if(MMConfig.enableStompingBoots){
+                GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stompingBoots), "OXO", "XBX", "OSO", 'S', Items.SHEARS, 'O', Blocks.OBSIDIAN, 'B', Items.IRON_BOOTS));
+            }
         }
 
     }

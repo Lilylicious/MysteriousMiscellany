@@ -73,6 +73,8 @@ public class MMJeiPlugin extends BlankModPlugin {
             registry.addDescription(new ItemStack(ObjHandler.autoCrafter), "jei.autoCrafter");
         if(MMConfig.enableUnHoe)
             registry.addDescription(unHoes, "jei.unHoe");
+        if(MMConfig.enableGrassStompingEnchant && MMConfig.enableStompingBoots)
+            registry.addDescription(new ItemStack(ObjHandler.stompingBoots), "jei.stompingboots");
 
 
     }
