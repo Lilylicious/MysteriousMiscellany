@@ -45,6 +45,8 @@ public class MMConfig {
     public static boolean enableAutoCrafter;
     public static boolean enableDyeRecipes;
     public static boolean enableUnHoe;
+    public static boolean enableGrassStompingEnchant;
+    public static boolean enableStompingBoots;
 
     public static void init(File configFile) {
         Configuration config = new Configuration(configFile);
@@ -88,6 +90,8 @@ public class MMConfig {
             enableAutoCrafter = config.getBoolean("enableAutoCrafter", "items", true, "Enable the auto crafter");
             enableDyeRecipes = config.getBoolean("enableDyeRecipes", "items", true, "Enable the dye recipes");
             enableUnHoe = config.getBoolean("enableUnHoe", "items", true, "Enable the UnHoes");
+            enableGrassStompingEnchant = config.getBoolean("enableGrassStompingEnchant", "items", true, "Enable the grass stomping enchant");
+            enableStompingBoots = config.getBoolean("enableStompingBoots", "items", true, "Enable the stomping boots");
 
             MMLogger.logInfo("Loaded configuration file.");
         } catch (Exception e) {

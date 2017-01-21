@@ -2,6 +2,7 @@ item.mm_fishstopper.name=Fishstopper
 item.mm_infusedFishstopper.name=Infused Fishstopper
 item.mm_enchantBooster.name=Enchant Booster
 item.mm_waterStopper.name=Waterstopper
+item.mm_stompingboots.name=Stomping Boots
 
 item.mm_unHoe_WOOD.name=Wood UnHoe
 item.mm_unHoe_STONE.name=Stone UnHoe
@@ -32,3 +33,4 @@ jei.enchantingGenerator=Generates RF from enchanting power. Place bookshelves li
 jei.iceSpreader=This block removes water blocks in a large radius, placing ice along the edges to prevent flowing water.
 jei.spawnPreventer=Prevents spawn in a radius. Default 32 radius.
 jei.autoCrafter=Put in items with a 1x1 recipe and get out the result. Extract from the botton, input from any other side.
+jei.stompingboots=Iron boots that when crafted automatically gets the grass stomping enchant. Enchant is available in the enchanting table for any boots.
