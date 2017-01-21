@@ -15,7 +15,7 @@ public class SpawnPreventer extends Block implements ITileEntityProvider{
 
     public SpawnPreventer() {
         super(Material.ROCK);
-        setUnlocalizedName("spawnPreventer");
+        setUnlocalizedName("spawnpreventer");
         this.setHarvestLevel("pickaxe", 0);
         this.setHardness(1.5F);
         this.setResistance(10.0F);

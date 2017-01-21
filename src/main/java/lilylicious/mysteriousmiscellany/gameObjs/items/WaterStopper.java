@@ -24,7 +24,7 @@ public class WaterStopper extends ToolMM {
 
     public WaterStopper() {
         super(0F, 4F, EnumHelper.addToolMaterial("waterStopper", 0, MMConfig.stopperDurability, 2.0F, 1F, 0), new HashSet<>());
-        this.setUnlocalizedName("waterStopper");
+        this.setUnlocalizedName("waterstopper");
         this.setMaxDamage(MMConfig.stopperDurability);
     }
 

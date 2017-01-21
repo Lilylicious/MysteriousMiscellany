@@ -16,7 +16,7 @@ public class InfusedFishStopper extends FishStopper {
 
     public InfusedFishStopper() {
         super(0F, 4F, EnumHelper.addToolMaterial("fishStopper", 0, MMConfig.infusedStopperDurability, 2.0F, 1F, 0), new HashSet<>());
-        this.setUnlocalizedName("infusedFishstopper");
+        this.setUnlocalizedName("infusedfishstopper");
         this.setMaxDamage(MMConfig.infusedStopperDurability);
     }
 

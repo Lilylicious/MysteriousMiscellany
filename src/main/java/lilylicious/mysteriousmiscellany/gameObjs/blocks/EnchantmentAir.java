@@ -14,7 +14,7 @@ public class EnchantmentAir extends BlockAir implements ITileEntityProvider {
 
     public EnchantmentAir() {
         super();
-        setUnlocalizedName("enchantmentAir");
+        setUnlocalizedName("enchantmentair");
     }
 
     @Nonnull

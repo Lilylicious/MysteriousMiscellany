@@ -18,7 +18,7 @@ public class UnHoe extends ItemHoe{
     public UnHoe(ToolMaterial material) {
         super(material);
 
-        this.setUnlocalizedName("mm_unHoe_" + material.name());
+        this.setUnlocalizedName("mm_unhoe_" + material.name().toLowerCase());
     }
 
     @Override

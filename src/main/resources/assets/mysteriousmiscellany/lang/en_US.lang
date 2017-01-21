@@ -1,21 +1,21 @@
 item.mm_fishstopper.name=Fishstopper
-item.mm_infusedFishstopper.name=Infused Fishstopper
-item.mm_enchantBooster.name=Enchant Booster
-item.mm_waterStopper.name=Waterstopper
+item.mm_infusedfishstopper.name=Infused Fishstopper
+item.mm_enchantbooster.name=Enchant Booster
+item.mm_waterstopper.name=Waterstopper
 
-item.mm_unHoe_WOOD.name=Wood UnHoe
-item.mm_unHoe_STONE.name=Stone UnHoe
-item.mm_unHoe_IRON.name=Iron UnHoe
-item.mm_unHoe_GOLD.name=Gold UnHoe
-item.mm_unHoe_DIAMOND.name=Diamond UnHoe
-tile.mm_compressedBookshelf.name=Compressed Bookshelf
-tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf
-tile.mm_enchantingGenerator.name=Enchanting Generator
-tile.mm_iceSpreader.name=Ocean Annihalator
-tile.mm_spawnPreventer.name=Spawn Preventer
-tile.mm_autoCrafter.name=Singlecrafter
+item.mm_unhoe_wood.name=Wood UnHoe
+item.mm_unhoe_stone.name=Stone UnHoe
+item.mm_unhoe_iron.name=Iron UnHoe
+item.mm_unhoe_gold.name=Gold UnHoe
+item.mm_unhoe_diamond.name=Diamond UnHoe
+tile.mm_compressedbookshelf.name=Compressed Bookshelf
+tile.mm_doublecompressedbookshelf.name=Double Compressed Bookshelf
+tile.mm_enchantinggenerator.name=Enchanting Generator
+tile.mm_icespreader.name=Ocean Annihalator
+tile.mm_spawnpreventer.name=Spawn Preventer
+tile.mm_autocrafter.name=Singlecrafter
 
-enchantment.grassStomping=Grass Stomping
+enchantment.grassstomping=Grass Stomping
 
 jei.dyerecipes=You can dye however many items you want of this type using a single dye and any amount of the item. Using sand instead of dye turns it into the base block.
 

@@ -24,7 +24,7 @@ public class IceSpreader extends Block implements ITileEntityProvider {
         this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.GLASS);
-        setUnlocalizedName("iceSpreader");
+        setUnlocalizedName("icespreader");
     }
 
     @Nonnull

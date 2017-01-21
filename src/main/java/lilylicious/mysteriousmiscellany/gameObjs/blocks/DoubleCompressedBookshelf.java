@@ -16,7 +16,7 @@ public class DoubleCompressedBookshelf extends BlockBookshelf {
 
     public DoubleCompressedBookshelf() {
         super();
-        setUnlocalizedName("doubleCompressedBookshelf");
+        setUnlocalizedName("doublecompressedbookshelf");
         setHardness(1.5f);
     }
 

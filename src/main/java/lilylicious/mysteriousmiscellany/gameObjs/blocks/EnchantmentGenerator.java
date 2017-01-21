@@ -30,7 +30,7 @@ public class EnchantmentGenerator extends Block implements ITileEntityProvider {
         this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState());
-        setUnlocalizedName("enchantingGenerator");
+        setUnlocalizedName("enchantinggenerator");
     }
 
     @Nonnull

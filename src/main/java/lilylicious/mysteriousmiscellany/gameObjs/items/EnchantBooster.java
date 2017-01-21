@@ -19,7 +19,7 @@ public class EnchantBooster extends ItemMM {
     private List<BlockPos> savedPositions = new ArrayList<>();
 
     public EnchantBooster() {
-        this.setUnlocalizedName("enchantBooster");
+        this.setUnlocalizedName("enchantbooster");
         this.setMaxStackSize(1);
     }
 
