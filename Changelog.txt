@@ -1,3 +1,6 @@
+###Version 1.10.2-1.4.13
+*FIXED: Grass Stomping enchantment now actually works as it should
+
 ###Version 1.10.2-1.4.12
 *FIXED: Broken textures for unhoes are now not broken..
 
