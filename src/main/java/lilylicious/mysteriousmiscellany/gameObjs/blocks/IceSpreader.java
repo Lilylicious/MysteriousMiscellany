@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class IceSpreader extends Block implements ITileEntityProvider {
 
-    private UUID owner;
+        private UUID owner;
     public IceSpreader() {
         super(Material.GLASS);
         this.setHarvestLevel("pickaxe", 0);
@@ -27,19 +27,19 @@ public class IceSpreader extends Block implements ITileEntityProvider {
         setUnlocalizedName("icespreader");
     }
 
-    @Nonnull
-    @Override
-    public Block setUnlocalizedName(@Nonnull String message) {
-        return super.setUnlocalizedName("mm_" + message);
-    }
+        @Nonnull
+        @Override
+        public Block setUnlocalizedName(@Nonnull String message) {
+            return super.setUnlocalizedName("mm_" + message);
+        }
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileIceSpreader(owner);
-    }
+        @Override
+        public TileEntity createNewTileEntity(World worldIn, int meta) {
+            return new TileIceSpreader(owner);
+        }
 
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        owner = placer.getUniqueID();
-    }
+        @Override
+        public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+            owner = placer.getUniqueID();
+        }
 }

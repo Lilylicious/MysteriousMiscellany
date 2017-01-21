@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "mysteriousmiscellany:blocks/crystallized_log_top",
+        "side": "mysteriousmiscellany:blocks/crystallized_log"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":    { "model": "mysteriousmiscellany:crystallizedlog" },
+        "axis=z":     { "model": "mysteriousmiscellany:crystallizedlog", "x": 90 },
+        "axis=x":     { "model": "mysteriousmiscellany:crystallizedlog", "x": 90, "y": 90 },
+        "axis=none":   { "model": "mysteriousmiscellany:crystallizedbark" }
+    }
+}

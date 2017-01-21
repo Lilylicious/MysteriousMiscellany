@@ -1,0 +1,85 @@
+package lilylicious.mysteriousmiscellany.gameObjs.blocks;
+
+import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileKnowledgeInfuser;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
+
+public class KnowledgeInfuser extends Block implements ITileEntityProvider {
+
+    public KnowledgeInfuser() {
+        super(Material.ROCK);
+        this.setHarvestLevel("pickaxe", 0);
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
+        this.setSoundType(SoundType.STONE);
+        setUnlocalizedName("knowledgeinfuser");
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing par6, float par7, float par8, float par9) {
+        if (!world.isRemote) {
+            TileKnowledgeInfuser infuser = (TileKnowledgeInfuser) world.getTileEntity(pos);
+            player.addChatMessage(new TextComponentString("Total EP: " + infuser.getEnchantingPower()));
+            player.addChatMessage(new TextComponentString("TimeDivisor: " + infuser.getTimeDivisor()));
+            player.addChatMessage(new TextComponentString("Ticks left: " + infuser.getCraftingTicks()));
+            return true;
+        }
+        return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        super.randomDisplayTick(stateIn, worldIn, pos, rand);
+
+        TileKnowledgeInfuser infuser = (TileKnowledgeInfuser) worldIn.getTileEntity(pos);
+
+        for (int i = -1; i <= 1; ++i) {
+            for (int j = -1; j <= 1; ++j) {
+
+                if (i > -1 && i < 1 && j == -1) {
+                //    j = 2;
+                }
+
+                if (infuser.getCraftingTicks() > 0) {
+                        BlockPos blockpos = pos.add(i, 1, j);
+                        float speed = 1 + (float) Math.log(infuser.getBaseTicks() / infuser.getCraftingTicks());
+
+                        if (net.minecraftforge.common.ForgeHooks.getEnchantPower(worldIn, blockpos) > 0) {
+
+                            worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D, (double) pos.getY() + 3.0D, (double) pos.getZ() + 0.5D, (double) (speed * (float) i + rand.nextFloat()) - 0.5D, (double) (speed * (float) 1 - rand.nextFloat() - 1.0F), speed * (double) ((float) j + rand.nextFloat()) - 0.5D);
+                        }
+
+                }
+            }
+        }
+    }
+
+    @Nonnull
+    @Override
+    public Block setUnlocalizedName(@Nonnull String message) {
+        return super.setUnlocalizedName("mm_" + message);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileKnowledgeInfuser();
+    }
+
+}
