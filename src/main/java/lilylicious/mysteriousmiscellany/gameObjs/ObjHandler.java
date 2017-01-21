@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ObjHandler {
 
@@ -42,6 +43,9 @@ public class ObjHandler {
     public static final Block iceSpreader = new IceSpreader();
     public static final Block spawnPreventer = new SpawnPreventer();
     public static final Block autoCrafter = new AutoCrafter();
+    public static final Block knowledgeInfuser = new KnowledgeInfuser();
+    public static final Block crystallizedLog = new CrystallizedLog();
+    public static final Block crystallizedPlanks = new CrystallizedPlanks();
 
     public static void register() {
         //Items
@@ -66,6 +70,9 @@ public class ObjHandler {
         registerBlockWithItem(iceSpreader, iceSpreader.getUnlocalizedName());
         registerBlockWithItem(spawnPreventer, spawnPreventer.getUnlocalizedName());
         registerBlockWithItem(autoCrafter, autoCrafter.getUnlocalizedName());
+        registerBlockWithItem(knowledgeInfuser, knowledgeInfuser.getUnlocalizedName());
+        registerBlockWithItem(crystallizedLog, crystallizedLog.getUnlocalizedName());
+        registerBlockWithItem(crystallizedPlanks, crystallizedPlanks.getUnlocalizedName());
 
         //Tiles
         GameRegistry.registerTileEntity(TileEnchantmentAir.class, "TileEnchantmentAir");
@@ -73,6 +80,7 @@ public class ObjHandler {
         GameRegistry.registerTileEntity(TileIceSpreader.class, "TileIceSpreader");
         GameRegistry.registerTileEntity(TileSpawnPreventer.class, "TileSpawnPreventer");
         GameRegistry.registerTileEntity(TileAutoCrafter.class, "TileAutoCrafter");
+        GameRegistry.registerTileEntity(TileKnowledgeInfuser.class, "TileKnowledgeInfuser");
     }
 
     public static void addRecipes() {
@@ -111,6 +119,8 @@ public class ObjHandler {
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stompingBoots), "OXO", "XBX", "OSO", 'S', Items.SHEARS, 'O', Blocks.OBSIDIAN, 'B', Items.IRON_BOOTS));
             }
         }
+
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(crystallizedPlanks, 4), crystallizedLog));
 
     }
 

@@ -17,29 +17,29 @@ import java.util.UUID;
 
 public class IceSpreader extends Block implements ITileEntityProvider {
 
-    private UUID owner;
+        private UUID owner;
     public IceSpreader() {
-        super(Material.GLASS);
-        this.setHarvestLevel("pickaxe", 0);
-        this.setHardness(1.5F);
-        this.setResistance(10.0F);
-        this.setSoundType(SoundType.GLASS);
-        setUnlocalizedName("iceSpreader");
-    }
+            super(Material.GLASS);
+            this.setHarvestLevel("pickaxe", 0);
+            this.setHardness(1.5F);
+            this.setResistance(10.0F);
+            this.setSoundType(SoundType.GLASS);
+            setUnlocalizedName("iceSpreader");
+        }
 
-    @Nonnull
-    @Override
-    public Block setUnlocalizedName(@Nonnull String message) {
-        return super.setUnlocalizedName("mm_" + message);
-    }
+        @Nonnull
+        @Override
+        public Block setUnlocalizedName(@Nonnull String message) {
+            return super.setUnlocalizedName("mm_" + message);
+        }
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileIceSpreader(owner);
-    }
+        @Override
+        public TileEntity createNewTileEntity(World worldIn, int meta) {
+            return new TileIceSpreader(owner);
+        }
 
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        owner = placer.getUniqueID();
-    }
+        @Override
+        public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+            owner = placer.getUniqueID();
+        }
 }
