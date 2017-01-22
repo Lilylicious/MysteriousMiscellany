@@ -15,13 +15,14 @@ tile.mm_enchantinggenerator.name=Enchanting Generator
 tile.mm_icespreader.name=Ocean Annihalator
 tile.mm_spawnpreventer.name=Spawn Preventer
 tile.mm_autocrafter.name=Singlecrafter
+tile.mm_autoCrafter.name=Singlecrafter
+tile.mm_crystallizedlog.name=Crystallized Log
+tile.mm_crystallizedplanks.name=Crystallized Planks
+tile.mm_knowledgeinfuser.name=Knowledge Infuser
 
 enchantment.grassstomping=Grass Stomping
 
 jei.dyerecipes=You can dye however many items you want of this type using a single dye and any amount of the item. Using sand instead of dye turns it into the base block.
-
-
-
 jei.fishStopper=The Fish Stopper will show you monster eggs, and allow you to right click to remove
 jei.infusedFishStopper=Same as the Fish Stopper, but with a shift click AOE mode.
 jei.enchantBooster=Simply approach an enchanting table with this in your inventory to give it full power.

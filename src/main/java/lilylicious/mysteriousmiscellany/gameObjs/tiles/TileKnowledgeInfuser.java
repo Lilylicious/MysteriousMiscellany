@@ -1,20 +1,19 @@
 package lilylicious.mysteriousmiscellany.gameObjs.tiles;
 
+import lilylicious.mysteriousmiscellany.gameObjs.recipes.InfuserRecipe;
 import lilylicious.mysteriousmiscellany.registry.InfuserRecipeRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
 public class TileKnowledgeInfuser extends TileEntity implements ITickable {
 
-
-    private int tickCount = 0;
-    private int baseCraftingTicks = 1200;
     private int craftingTicks = 0;
     private int ePower = 0;
+    InfuserRecipe recipe;
 
     public TileKnowledgeInfuser() {
     }
@@ -24,25 +23,30 @@ public class TileKnowledgeInfuser extends TileEntity implements ITickable {
 
         ePower = findEnchantingPower();
 
-        if (craftingTicks <= 0 && InfuserRecipeRegistry.blockValid(blockAbove()))
-            craftingTicks = baseCraftingTicks / getTimeDivisor();
-        else if (craftingTicks > 0)
-            craftingTicks--;
-
-        if(!InfuserRecipeRegistry.blockValid(blockAbove())){
+        if (InfuserRecipeRegistry.blockValid(blockAbove()))
+            recipe = InfuserRecipeRegistry.getRecipe(blockAbove());
+        else {
             craftingTicks = 0;
             return;
         }
 
-        if (!getWorld().isRemote && InfuserRecipeRegistry.blockValid(blockAbove()) && craftingTicks <= 0)
-            getWorld().setBlockState(getPos().up(), InfuserRecipeRegistry.getResult(blockAbove()).getStateFromMeta(getWorld().getBlockState(getPos().up()).getBlock().getMetaFromState(getWorld().getBlockState(getPos().up()))), 2);
+        if (craftingTicks <= 0 && recipe != null && recipe.getePowerCost() <= getEnchantingPower())
+            craftingTicks = recipe.getTickCost() / getTimeDivisor();
+        else if (craftingTicks > 0)
+            craftingTicks--;
+
+        if (!getWorld().isRemote && InfuserRecipeRegistry.blockValid(blockAbove()) && recipe.getePowerCost() <= getEnchantingPower() && craftingTicks <= 0) {
+            getWorld().setBlockState(getPos().up(), recipe.getResultBlock().getStateFromMeta(getWorld().getBlockState(getPos().up()).getBlock().getMetaFromState(getWorld().getBlockState(getPos().up()))), 2);
+            getWorld().playEvent(2001, getPos().up(), Block.getStateId(recipe.getResultBlock().getDefaultState()));
+        }
+
     }
 
 
     private int findEnchantingPower() {
         int enchantingPower = 0;
 
-        for (BlockPos pos : BlockPos.getAllInBoxMutable(getPos().add(-1, 1, -1), getPos().add(1, 1, 1))) {
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(getPos().add(-1, 0, -1), getPos().add(1, 0, 1))) {
             enchantingPower += getWorld().getBlockState(pos).getBlock().getEnchantPowerBonus(getWorld(), pos);
         }
 
@@ -62,12 +66,11 @@ public class TileKnowledgeInfuser extends TileEntity implements ITickable {
         return craftingTicks;
     }
 
-    public int getBaseTicks(){
-        return baseCraftingTicks;
-    }
-
-    private Block blockAbove(){
+    private Block blockAbove() {
         return getWorld().getBlockState(getPos().up()).getBlock();
     }
 
+    public InfuserRecipe getRecipe(){
+        return recipe;
+    }
 }
