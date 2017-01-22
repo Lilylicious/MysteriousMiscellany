@@ -49,6 +49,7 @@ public class ClientProxy implements IProxy {
         registerBlock(ObjHandler.autoCrafter);
         registerBlock(ObjHandler.crystallizedLog);
         registerBlock(ObjHandler.crystallizedPlanks);
+        registerBlock(ObjHandler.knowledgeInfuser);
     }
 
     private void registerItem(Item i) {

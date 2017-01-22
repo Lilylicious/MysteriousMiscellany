@@ -54,18 +54,14 @@ public class KnowledgeInfuser extends Block implements ITileEntityProvider {
             for (int j = -1; j <= 1; ++j) {
 
                 if (i > -1 && i < 1 && j == -1) {
-                //    j = 2;
+                    //    j = 2;
                 }
 
                 if (infuser.getCraftingTicks() > 0) {
-                        BlockPos blockpos = pos.add(i, 1, j);
-                        float speed = 1 + (float) Math.log(infuser.getBaseTicks() / infuser.getCraftingTicks());
+                    BlockPos blockpos = pos.add(i, 1, j);
+                    float speed = 1 + (float) Math.log(infuser.getRecipe().getTickCost() / infuser.getCraftingTicks());
 
-                        if (net.minecraftforge.common.ForgeHooks.getEnchantPower(worldIn, blockpos) > 0) {
-
-                            worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D, (double) pos.getY() + 3.0D, (double) pos.getZ() + 0.5D, (double) (speed * (float) i + rand.nextFloat()) - 0.5D, (double) (speed * (float) 1 - rand.nextFloat() - 1.0F), speed * (double) ((float) j + rand.nextFloat()) - 0.5D);
-                        }
-
+                    worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D, (double) pos.getY() + 2.0D, (double) pos.getZ() + 0.5D, (double) (speed * (float) i + rand.nextFloat()) - 0.5D, (double) (speed * (float) 1 - rand.nextFloat() - 1.0F), speed * (double) ((float) j + rand.nextFloat()) - 0.5D);
                 }
             }
         }

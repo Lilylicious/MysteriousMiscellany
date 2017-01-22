@@ -32,6 +32,7 @@ public class MMConfig {
     public static int infusedStopperDurability;
     public static int spawnPreventionRadius;
     public static int iceSpreaderRadius;
+    public static int baseTickCost;
 
     public static boolean enableFishstopper;
     public static boolean enableInfusedFishStopper;
@@ -63,6 +64,7 @@ public class MMConfig {
             infusedStopperDurability = config.getInt("infusedStopperDurability", "values", 256, 0, Int.MaxValue(), "Durability of the tool. 0 for unlimited.");
             spawnPreventionRadius = config.getInt("spawnPreventionRadius", "values", 32, 1, 128, "Radius for spawn prevention.");
             iceSpreaderRadius = config.getInt("iceSpreaderRadius", "values", 16, 1, 128, "Radius for the ice spreader");
+            baseTickCost =  config.getInt("baseTickCost", "values", 1200, 1, Int.MaxValue(), "Base time in ticks required for knowledge infusion crafting. Is then adjusted by enchanting power and recipe multipliers.");
 
             //Sounds
             preventServerWideBossSounds = config.getBoolean("preventServerWideBossSounds", "sounds", true, "Prevent dragons from playing death sounds outside the end.");
