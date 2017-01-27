@@ -101,7 +101,7 @@ public class ObjHandler {
         if(MMConfig.enableDoubleCompressedBookshelf)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(doubleCompressedBookshelf), "BPB", "PLP", "BPB", 'B', compressedBookshelf, 'L', ObjHandler.crystallizedLog, 'P', ObjHandler.crystallizedPlanks));
         if(MMConfig.enableEnchantingGenerator)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "PDP", "ETE", "POP", 'P', ObjHandler.crystallizedPlanks, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', ObjHandler.crystallizedObsidian));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "PDP", "ETE", "POP", 'P', Blocks.PLANKS, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', Blocks.OBSIDIAN));
         if(MMConfig.enableOceanAnnihalator)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', ObjHandler.crystallizedObsidian, 'I', Blocks.ICE, 'E', "gemEmerald"));
         if(MMConfig.enableSpawnPreventer)
