@@ -9,41 +9,30 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.UUID;
-
 public class TileIceSpreader extends TileEntity implements ITickable {
-
-    private UUID owner;
-
-    public TileIceSpreader(UUID owner){
-        this.owner = owner;
-    }
 
     @Override
     public void update() {
 
-        if(owner == null)
-            owner = this.getWorld().getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 32, false).getUniqueID();
+        if (getWorld().isRemote)
+            return;
 
-        if(owner != null){
-            int radius = MMConfig.iceSpreaderRadius;
-            Iterable<BlockPos> iterable = WorldHelper.findBox(this.getPos(), radius);
+        int radius = MMConfig.iceSpreaderRadius;
+        Iterable<BlockPos> iterable = WorldHelper.findBox(this.getPos(), radius);
 
-            for (BlockPos blockPos : iterable) {
-                IBlockState blockState = this.getWorld().getBlockState(blockPos);
+        for (BlockPos blockPos : iterable) {
+            IBlockState blockState = this.getWorld().getBlockState(blockPos);
 
-                IBlockState targetState = Blocks.AIR.getDefaultState();
+            IBlockState targetState = Blocks.AIR.getDefaultState();
 
-                if(this.getPos().getX() - blockPos.getX() == -radius || this.getPos().getX() - blockPos.getX() == radius
-                          || this.getPos().getZ() - blockPos.getZ() == -radius || this.getPos().getZ() - blockPos.getZ() == radius
-                          || this.getPos().getY() - blockPos.getY() == -radius || this.getPos().getY() - blockPos.getY() == radius)
-                    targetState = Blocks.ICE.getDefaultState();
+            if (this.getPos().getX() - blockPos.getX() == -radius || this.getPos().getX() - blockPos.getX() == radius
+                    || this.getPos().getZ() - blockPos.getZ() == -radius || this.getPos().getZ() - blockPos.getZ() == radius
+                    || this.getPos().getY() - blockPos.getY() == -radius || this.getPos().getY() - blockPos.getY() == radius)
+                targetState = Blocks.ICE.getDefaultState();
 
-                if (Predicates.IS_WATER.test(blockState.getBlock()) || Predicates.ICE_NOT_ICE.test(blockState.getBlock(), targetState.getBlock()))
-                    WorldHelper.replaceBlock(this.getWorld().getPlayerEntityByUUID(owner), this.getWorld(), blockPos, null, targetState);
-                }
-
-            }
+            if (Predicates.IS_WATER.test(blockState.getBlock()) || Predicates.ICE_NOT_ICE.test(blockState.getBlock(), targetState.getBlock()))
+                getWorld().setBlockState(pos, targetState);
         }
-
     }
+
+}
