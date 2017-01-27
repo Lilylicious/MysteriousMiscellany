@@ -24,7 +24,7 @@ public class WorldHelper {
     public static boolean replaceBlock(EntityPlayer player, World world, BlockPos pos, Block oldBlock, IBlockState newBlockState) {
 
         IBlockState blockState = world.getBlockState(pos);
-        if ((oldBlock == null || blockState.getBlock() == oldBlock) &&
+        if (!world.isRemote && (oldBlock == null || blockState.getBlock() == oldBlock) &&
                 !FMLCommonHandler.instance().getMinecraftServerInstance().isBlockProtected(world, pos, player)) {
 
             BlockSnapshot before = BlockSnapshot.getBlockSnapshot(world, pos);
@@ -38,6 +38,16 @@ public class WorldHelper {
                 return false;
             }
 
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean replaceBlock(World world, BlockPos pos, Block oldBlock, IBlockState newBlockState) {
+
+        IBlockState blockState = world.getBlockState(pos);
+        if (!world.isRemote && (oldBlock == null || blockState.getBlock() == oldBlock)) {
+            world.setBlockState(pos, newBlockState);
             return true;
         }
         return false;
