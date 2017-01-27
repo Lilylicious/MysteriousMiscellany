@@ -1,6 +1,7 @@
 package lilylicious.mysteriousmiscellany.gameObjs.tiles;
 
 import lilylicious.mysteriousmiscellany.config.MMConfig;
+import lilylicious.mysteriousmiscellany.gameObjs.blocks.IceSpreader;
 import lilylicious.mysteriousmiscellany.utils.Predicates;
 import lilylicious.mysteriousmiscellany.utils.WorldHelper;
 import net.minecraft.block.state.IBlockState;
@@ -30,8 +31,8 @@ public class TileIceSpreader extends TileEntity implements ITickable {
                     || this.getPos().getY() - blockPos.getY() == -radius || this.getPos().getY() - blockPos.getY() == radius)
                 targetState = Blocks.ICE.getDefaultState();
 
-            if (Predicates.IS_WATER.test(blockState.getBlock()) || Predicates.ICE_NOT_ICE.test(blockState.getBlock(), targetState.getBlock()))
-                getWorld().setBlockState(pos, targetState);
+            if (blockPos != getPos() && Predicates.IS_WATER.test(blockState.getBlock()) || Predicates.ICE_NOT_ICE.test(blockState.getBlock(), targetState.getBlock()))
+                getWorld().setBlockState(blockPos, targetState);
         }
     }
 
