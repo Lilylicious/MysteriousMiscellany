@@ -17,8 +17,9 @@ public class InfuserRecipeRegistry {
     public static void load() {
         infuserRecipes.clear();
 
-        infuserRecipes.add(new InfuserRecipe(Blocks.LOG, ObjHandler.crystallizedLog, 0, 1));
-        infuserRecipes.add(new InfuserRecipe(Blocks.SAND, Blocks.BRICK_BLOCK, 100, 2));
+        infuserRecipes.add(new InfuserRecipe(Blocks.LOG, ObjHandler.crystallizedLog, 8, 10, 1));
+        infuserRecipes.add(new InfuserRecipe(Blocks.STONE, ObjHandler.crystallizedStone, 8, 10, 1));
+        infuserRecipes.add(new InfuserRecipe(Blocks.OBSIDIAN, ObjHandler.crystallizedObsidian, 72, 20, 2));
 
         MMLogger.logInfo("Loaded recipes");
     }
@@ -32,27 +33,15 @@ public class InfuserRecipeRegistry {
         return false;
     }
 
-    public static Block getResult(Block block) {
-        for(InfuserRecipe recipe : infuserRecipes)
-            if(recipe.getSourceBlock() == block)
-                return recipe.getResultBlock();
-
-        return null;
-    }
-
-    public static int getePowerCost(Block block){
-        for(InfuserRecipe recipe : infuserRecipes)
-            if(recipe.getSourceBlock() == block)
-                return recipe.getePowerCost();
-
-        return 0;
-    }
-
     public static InfuserRecipe getRecipe(Block block){
         for(InfuserRecipe recipe : infuserRecipes)
             if(recipe.getSourceBlock() == block)
                 return recipe;
 
         return null;
+    }
+
+    public static List<InfuserRecipe> getInfuserRecipes() {
+        return infuserRecipes;
     }
 }

@@ -34,24 +34,7 @@ public class CrystallizedLog extends BlockLog {
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState iblockstate = this.getDefaultState();
-
-        switch (meta & 12)
-        {
-            case 0:
-                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
-                break;
-            case 4:
-                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
-                break;
-            case 8:
-                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
-                break;
-            default:
-                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
-        }
-
-        return iblockstate;
+        return this.getDefaultState().withProperty(LOG_AXIS, EnumAxis.values()[meta]);
     }
 
     /**
@@ -60,32 +43,18 @@ public class CrystallizedLog extends BlockLog {
     @SuppressWarnings("incomplete-switch")
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
-
-        switch ((BlockLog.EnumAxis)state.getValue(LOG_AXIS))
-        {
-            case X:
-                i = 0;
-                break;
-            case Z:
-                i |= 1;
-                break;
-            case NONE:
-                i |= 2;
-        }
-
-        return i;
+        return state.getValue(LOG_AXIS).ordinal();
     }
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {LOG_AXIS});
+        return new BlockStateContainer(this, LOG_AXIS);
     }
 
     @Override
     public float getEnchantPowerBonus(World world, BlockPos pos)
     {
-        return 32;
+        return 8;
     }
 
     @Nonnull
