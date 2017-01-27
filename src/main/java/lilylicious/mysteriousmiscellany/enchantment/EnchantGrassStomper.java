@@ -37,7 +37,7 @@ public class EnchantGrassStomper extends EnchantmentBase {
             return;
 
 
-        if (!player.world.isRemote && EnchantmentHelper.getMaxEnchantmentLevel(this, player) > 0) {
+        if (!player.getEntityWorld().isRemote && EnchantmentHelper.getMaxEnchantmentLevel(this, player) > 0) {
             Iterable<BlockPos> blocks = WorldHelper.findBox(player.getPosition(), 3);
 
             for (BlockPos blockPos : blocks) {

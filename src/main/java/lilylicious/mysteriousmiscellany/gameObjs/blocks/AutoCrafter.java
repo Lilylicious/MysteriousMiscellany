@@ -25,7 +25,7 @@ public class AutoCrafter extends Block implements ITileEntityProvider {
 
     public AutoCrafter() {
         super(Material.ROCK);
-        this.setUnlocalizedName("autoCrafter");
+        this.setUnlocalizedName("autocrafter");
         this.setHardness(10.0f);
     }
 

@@ -3,6 +3,7 @@ package lilylicious.mysteriousmiscellany.registry;
 import lilylicious.mysteriousmiscellany.utils.MMLogger;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -42,6 +43,10 @@ public class CrafterRecipeRegistry {
     }
 
     public static boolean itemValid(Item item){
+        if(item instanceof ItemMultiTexture)
+            for(Item listItem : crafterItems)
+                if(((ItemMultiTexture) item).getBlock() == Block.getBlockFromItem(listItem))
+                    return true;
         return crafterItems.contains(item);
     }
 
@@ -50,7 +55,7 @@ public class CrafterRecipeRegistry {
         for(Object obj : recipe.getInput()) {
             if(obj != null) {
                 if(obj instanceof List) {
-                    return (List<Item>) obj;
+                    return Collections.singletonList(((ItemStack)((List) obj).get(0)).getItem());
                 } else if(obj instanceof ItemStack) {
                     return Collections.singletonList(((ItemStack) obj).getItem());
                 } else if(obj instanceof Block) {
@@ -68,7 +73,7 @@ public class CrafterRecipeRegistry {
         for(Object obj : recipe.getInput()) {
             if(obj != null) {
                 if(obj instanceof List) {
-                    return (List<Item>) obj;
+                    return Collections.singletonList(((ItemStack)((List) obj).get(0)).getItem());
                 } else if(obj instanceof ItemStack) {
                     return Collections.singletonList(((ItemStack) obj).getItem());
                 } else if(obj instanceof Block) {

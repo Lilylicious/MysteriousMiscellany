@@ -15,12 +15,6 @@ public class KnowledgeInfuserRecipeHandler implements IRecipeHandler<KnowledgeIn
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid() {
-        return KnowledgeInfuserRecipeCategory.NAME;
-    }
-
-    @Nonnull
-    @Override
     public String getRecipeCategoryUid(@Nonnull KnowledgeInfuserRecipeWrapper recipe) {
         return KnowledgeInfuserRecipeCategory.NAME;
     }

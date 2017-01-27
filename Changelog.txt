@@ -1,3 +1,6 @@
+###Version 1.11.2-1.1.0
+*ADDED: Knowledge Infusion crafting! Surround the Knowledge Infuser on the sides with enchanting power (including corners), RF from the bottom, and the block to infuse on the top.
+
 ###Version 1.11.2-1.0.1
 *FIXED: Lowercase things
 *FIXED: Grass Stomping enchantment now actually works as it should

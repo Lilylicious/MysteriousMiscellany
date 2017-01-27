@@ -45,38 +45,39 @@ public class MMJeiPlugin extends BlankModPlugin {
 
 
         if(MMConfig.enableFishstopper)
-            registry.addDescription(new ItemStack(ObjHandler.fishStopper), "jei.fishStopper");
+            registry.addDescription(new ItemStack(ObjHandler.fishStopper), "jei.mysteriousmiscellany.fishStopper");
         if(MMConfig.enableInfusedFishStopper)
-            registry.addDescription(new ItemStack(ObjHandler.infusedFishStopper), "jei.infusedFishStopper");
+            registry.addDescription(new ItemStack(ObjHandler.infusedFishStopper), "jei.mysteriousmiscellany.infusedFishStopper");
         if(MMConfig.enableEnchantBooster)
-            registry.addDescription(new ItemStack(ObjHandler.enchantBooster), "jei.enchantBooster");
+            registry.addDescription(new ItemStack(ObjHandler.enchantBooster), "jei.mysteriousmiscellany.enchantBooster");
         if(MMConfig.enableWaterStopper)
-            registry.addDescription(new ItemStack(ObjHandler.waterStopper), "jei.waterStopper");
+            registry.addDescription(new ItemStack(ObjHandler.waterStopper), "jei.mysteriousmiscellany.waterStopper");
         if(MMConfig.enableCompressedBookshelf)
-            registry.addDescription(new ItemStack(ObjHandler.compressedBookshelf), "jei.compressedBookshelf");
+            registry.addDescription(new ItemStack(ObjHandler.compressedBookshelf), "jei.mysteriousmiscellany.compressedBookshelf");
         if(MMConfig.enableDoubleCompressedBookshelf)
-            registry.addDescription(new ItemStack(ObjHandler.doubleCompressedBookshelf), "jei.doubleCompressedBookshelf");
+            registry.addDescription(new ItemStack(ObjHandler.doubleCompressedBookshelf), "jei.mysteriousmiscellany.doubleCompressedBookshelf");
         if(MMConfig.enableEnchantingGenerator)
-            registry.addDescription(new ItemStack(ObjHandler.enchantingGenerator), "jei.enchantingGenerator");
+            registry.addDescription(new ItemStack(ObjHandler.enchantingGenerator), "jei.mysteriousmiscellany.enchantingGenerator");
         if (MMConfig.enableOceanAnnihalator)
-            registry.addDescription(new ItemStack(ObjHandler.iceSpreader), "jei.iceSpreader");
+            registry.addDescription(new ItemStack(ObjHandler.iceSpreader), "jei.mysteriousmiscellany.iceSpreader");
         if(MMConfig.enableSpawnPreventer)
-            registry.addDescription(new ItemStack(ObjHandler.spawnPreventer), "jei.spawnPreventer");
+            registry.addDescription(new ItemStack(ObjHandler.spawnPreventer), "jei.mysteriousmiscellany.spawnPreventer");
         if (MMConfig.enableDyeRecipes) {
-            registry.addDescription(stainedGlass, "jei.dyerecipes");
-            registry.addDescription(stainedGlassPanes, "jei.dyerecipes");
-            registry.addDescription(hardenedClay, "jei.dyerecipes");
-            registry.addDescription(carpets, "jei.dyerecipes");
-            registry.addDescription(wool, "jei.dyerecipes");
+            registry.addDescription(stainedGlass, "jei.mysteriousmiscellany.dyerecipes");
+            registry.addDescription(stainedGlassPanes, "jei.mysteriousmiscellany.dyerecipes");
+            registry.addDescription(hardenedClay, "jei.mysteriousmiscellany.dyerecipes");
+            registry.addDescription(carpets, "jei.mysteriousmiscellany.dyerecipes");
+            registry.addDescription(wool, "jei.mysteriousmiscellany.dyerecipes");
         }
         if(MMConfig.enableAutoCrafter)
-            registry.addDescription(new ItemStack(ObjHandler.autoCrafter), "jei.autoCrafter");
+            registry.addDescription(new ItemStack(ObjHandler.autoCrafter), "jei.mysteriousmiscellany.autoCrafter");
         if(MMConfig.enableUnHoe)
-            registry.addDescription(unHoes, "jei.unHoe");
+            registry.addDescription(unHoes, "jei.mysteriousmiscellany.unHoe");
         if(MMConfig.enableGrassStompingEnchant && MMConfig.enableStompingBoots)
-            registry.addDescription(new ItemStack(ObjHandler.stompingBoots), "jei.stompingboots");
+            registry.addDescription(new ItemStack(ObjHandler.stompingBoots), "jei.mysteriousmiscellany.stompingboots");
 
 
+        registry.addDescription(new ItemStack(ObjHandler.knowledgeInfuser), "jei.mysteriousmiscellany.knowledgeinfuser");
         registry.addRecipeCategories(new KnowledgeInfuserRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeHandlers(new KnowledgeInfuserRecipeHandler());
         registry.addRecipes(KnowledgeInfuserRecipeMaker.getRecipes());

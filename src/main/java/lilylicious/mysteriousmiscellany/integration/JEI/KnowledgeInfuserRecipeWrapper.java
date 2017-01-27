@@ -1,9 +1,11 @@
 package lilylicious.mysteriousmiscellany.integration.JEI;
 
 import lilylicious.mysteriousmiscellany.gameObjs.recipes.InfuserRecipe;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -18,15 +20,10 @@ public class KnowledgeInfuserRecipeWrapper extends BlankRecipeWrapper {
     public KnowledgeInfuserRecipeWrapper(InfuserRecipe recipe) {
         this.recipe = recipe;
     }
-
     @Override
-    public List<ItemStack> getInputs() {
-        return Collections.singletonList(new ItemStack(recipe.getSourceBlock()));
-    }
-
-    @Override
-    public List<ItemStack> getOutputs() {
-        return Collections.singletonList(new ItemStack(recipe.getResultBlock()));
+    public void getIngredients(IIngredients ingredients) {
+        ingredients.setInput(ItemStack.class, new ItemStack(recipe.getSourceBlock()));
+        ingredients.setOutput(ItemStack.class, new ItemStack(recipe.getResultBlock()));
     }
 
     @Nullable

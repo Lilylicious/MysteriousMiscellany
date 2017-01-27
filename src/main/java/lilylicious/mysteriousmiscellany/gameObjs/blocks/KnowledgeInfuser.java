@@ -7,7 +7,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -33,13 +32,13 @@ public class KnowledgeInfuser extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing par6, float par7, float par8, float par9) {
         if (!world.isRemote) {
             TileKnowledgeInfuser infuser = (TileKnowledgeInfuser) world.getTileEntity(pos);
-            player.addChatMessage(new TextComponentString("Total EP: " + infuser.getEnchantingPower()));
-            player.addChatMessage(new TextComponentString("TimeDivisor: " + infuser.getTimeDivisor()));
-            player.addChatMessage(new TextComponentString("Ticks left: " + infuser.getCraftingTicks()));
-            player.addChatMessage(new TextComponentString("RF Stored: " + infuser.getEnergyStored(null)));
+            player.sendMessage(new TextComponentString("Total EP: " + infuser.getEnchantingPower()));
+            player.sendMessage(new TextComponentString("TimeDivisor: " + infuser.getTimeDivisor()));
+            player.sendMessage(new TextComponentString("Ticks left: " + infuser.getCraftingTicks()));
+            player.sendMessage(new TextComponentString("RF Stored: " + infuser.getEnergyStored(null)));
             return true;
         }
         return true;
@@ -47,22 +46,16 @@ public class KnowledgeInfuser extends Block implements ITileEntityProvider {
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        super.randomDisplayTick(stateIn, worldIn, pos, rand);
-
         TileKnowledgeInfuser infuser = (TileKnowledgeInfuser) worldIn.getTileEntity(pos);
 
         for (int i = -1; i <= 1; ++i) {
             for (int j = -1; j <= 1; ++j) {
 
-                if (i > -1 && i < 1 && j == -1) {
-                    //    j = 2;
-                }
 
                 if (infuser.getCraftingTicks() > 0) {
-                    BlockPos blockpos = pos.add(i, 1, j);
                     float speed = 1 + (float) Math.log(infuser.getRecipe().getTickCost() / infuser.getCraftingTicks());
 
-                    worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D, (double) pos.getY() + 2.0D, (double) pos.getZ() + 0.5D, (double) (speed * (float) i + rand.nextFloat()) - 0.5D, (double) (speed * (float) 1 - rand.nextFloat() - 1.0F), speed * (double) ((float) j + rand.nextFloat()) - 0.5D);
+                    worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D, (double) pos.getY() + 2.0D, (double) pos.getZ() + 0.5D, (double) (speed * (float) i + rand.nextFloat()) - 0.5D, (double) (speed * (float) 1 - rand.nextFloat() - 1.0F), speed * (double) ((float) j + rand.nextFloat()) - 0.5D, new int[0]);
                 }
             }
         }
