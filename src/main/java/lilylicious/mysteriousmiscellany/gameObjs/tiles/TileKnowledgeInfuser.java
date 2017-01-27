@@ -35,14 +35,15 @@ public class TileKnowledgeInfuser extends TileEntity implements ITickable, IEner
             return;
         }
 
-        if (!getWorld().isRemote) {
-            if (craftingTicks <= 0 && recipe != null && recipe.getePowerCost() <= getEnchantingPower())
-                craftingTicks = recipe.getTickCost() / getTimeDivisor();
-            else if (craftingTicks > 0 && storage.getEnergyStored() >= recipe.getRfPowerCost()) {
-                craftingTicks--;
+        if (craftingTicks <= 0 && recipe != null && recipe.getePowerCost() <= getEnchantingPower())
+            craftingTicks = recipe.getTickCost() / getTimeDivisor();
+        else if (craftingTicks > 0 && storage.getEnergyStored() >= recipe.getRfPowerCost()) {
+            craftingTicks--;
+            if (!getWorld().isRemote)
                 storage.extractEnergy(recipe.getRfPowerCost(), false);
-            }
+        }
 
+        if (!getWorld().isRemote) {
             if (InfuserRecipeRegistry.blockValid(blockAbove()) && recipe.getePowerCost() <= getEnchantingPower() && craftingTicks <= 0) {
                 if (recipe.getSourceBlock() instanceof BlockLog)
                     getWorld().setBlockState(getPos().up(), recipe.getResultBlock().getDefaultState().withProperty(LOG_AXIS, getWorld().getBlockState(getPos().up()).getValue(LOG_AXIS)), 2);

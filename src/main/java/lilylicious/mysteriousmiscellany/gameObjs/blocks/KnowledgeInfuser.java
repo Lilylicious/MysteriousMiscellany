@@ -59,7 +59,6 @@ public class KnowledgeInfuser extends Block implements ITileEntityProvider {
                 }
 
                 if (infuser.getCraftingTicks() > 0) {
-                    BlockPos blockpos = pos.add(i, 1, j);
                     float speed = 1 + (float) Math.log(infuser.getRecipe().getTickCost() / infuser.getCraftingTicks());
 
                     worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D, (double) pos.getY() + 2.0D, (double) pos.getZ() + 0.5D, (double) (speed * (float) i + rand.nextFloat()) - 0.5D, (double) (speed * (float) 1 - rand.nextFloat() - 1.0F), speed * (double) ((float) j + rand.nextFloat()) - 0.5D);

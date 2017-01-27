@@ -56,7 +56,7 @@ public class FishStopper extends ToolMM {
 
             for (BlockPos blockPos : iterable) {
                 replaceEgg(stack, world, player, blockPos);
-                world.playEvent(2001, blockPos, Block.getStateId(world.getBlockState(blockPos)));
+
             }
         }
     }
@@ -70,7 +70,6 @@ public class FishStopper extends ToolMM {
         }
 
         replaceEgg(stack, world, player, pos);
-        world.playEvent(2001, pos, Block.getStateId(world.getBlockState(pos)));
 
         return EnumActionResult.SUCCESS;
     }
@@ -85,6 +84,7 @@ public class FishStopper extends ToolMM {
 
         if (type != null && WorldHelper.replaceBlock(player, world, blockPos, Blocks.MONSTER_EGG, getNewBlock(type))) {
             stack.damageItem(1, player);
+            world.playEvent(2001, blockPos, Block.getStateId(world.getBlockState(blockPos)));
         }
 
     }
