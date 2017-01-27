@@ -4,11 +4,11 @@ item.mm_enchantBooster.name=Enchant Booster
 item.mm_waterStopper.name=Waterstopper
 item.mm_stompingboots.name=Stomping Boots
 
-item.mm_unHoe_WOOD.name=Wood UnHoe
-item.mm_unHoe_STONE.name=Stone UnHoe
-item.mm_unHoe_IRON.name=Iron UnHoe
-item.mm_unHoe_GOLD.name=Gold UnHoe
-item.mm_unHoe_DIAMOND.name=Diamond UnHoe
+item.mm_unHoe_wood.name=Wood UnHoe
+item.mm_unHoe_stone.name=Stone UnHoe
+item.mm_unHoe_iron.name=Iron UnHoe
+item.mm_unHoe_gold.name=Gold UnHoe
+item.mm_unHoe_diamond.name=Diamond UnHoe
 tile.mm_compressedBookshelf.name=Compressed Bookshelf
 tile.mm_doubleCompressedBookshelf.name=Double Compressed Bookshelf
 tile.mm_enchantingGenerator.name=Enchanting Generator
@@ -17,7 +17,10 @@ tile.mm_spawnPreventer.name=Spawn Preventer
 tile.mm_autoCrafter.name=Singlecrafter
 tile.mm_crystallizedlog.name=Crystallized Log
 tile.mm_crystallizedplanks.name=Crystallized Planks
+tile.mm_crystallizedstone.name=Crystallized Stone
+tile.mm_crystallizedobsidian.name=Crystallized Obsidian
 tile.mm_knowledgeinfuser.name=Knowledge Infuser
+
 
 enchantment.grassStomping=Grass Stomping
 
@@ -34,3 +37,4 @@ jei.iceSpreader=This block removes water blocks in a large radius, placing ice a
 jei.spawnPreventer=Prevents spawn in a radius. Default 32 radius.
 jei.autoCrafter=Put in items with a 1x1 recipe and get out the result. Extract from the botton, input from any other side.
 jei.stompingboots=Iron boots that when crafted automatically gets the grass stomping enchant. Enchant is available in the enchanting table for any boots.
+jei.mysteriousmiscellany.minimumepower=Minimum: %1$d Enchanting Power

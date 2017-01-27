@@ -39,6 +39,7 @@ public class KnowledgeInfuser extends Block implements ITileEntityProvider {
             player.addChatMessage(new TextComponentString("Total EP: " + infuser.getEnchantingPower()));
             player.addChatMessage(new TextComponentString("TimeDivisor: " + infuser.getTimeDivisor()));
             player.addChatMessage(new TextComponentString("Ticks left: " + infuser.getCraftingTicks()));
+            player.addChatMessage(new TextComponentString("RF Stored: " + infuser.getEnergyStored(null)));
             return true;
         }
         return true;

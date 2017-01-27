@@ -76,6 +76,11 @@ public class MMJeiPlugin extends BlankModPlugin {
             registry.addDescription(new ItemStack(ObjHandler.stompingBoots), "jei.stompingboots");
 
 
+        registry.addRecipeCategories(new KnowledgeInfuserRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+        registry.addRecipeHandlers(new KnowledgeInfuserRecipeHandler());
+        registry.addRecipes(KnowledgeInfuserRecipeMaker.getRecipes());
+        registry.addRecipeCategoryCraftingItem(new ItemStack(ObjHandler.knowledgeInfuser), KnowledgeInfuserRecipeCategory.NAME);
+
     }
 
 }

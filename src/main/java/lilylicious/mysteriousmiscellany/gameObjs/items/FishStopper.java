@@ -45,6 +45,57 @@ public class FishStopper extends ToolMM {
         super(attackDamageIn, attackSpeedIn, materialIn, effectiveBlocksIn);
     }
 
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int invSlot, boolean par5) {
+
+        EntityPlayer player = (EntityPlayer) entity;
+
+        if (AOEMode) {
+            BlockPos playerPos = player.getPosition();
+            Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, MMConfig.destroyRadius);
+
+            for (BlockPos blockPos : iterable) {
+                replaceEgg(stack, world, player, blockPos);
+                world.playEvent(2001, blockPos, Block.getStateId(world.getBlockState(blockPos)));
+            }
+        }
+    }
+
+    @Nonnull
+    @Override
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing sideHit, float px, float py, float pz) {
+
+        if (world.isRemote) {
+            return EnumActionResult.SUCCESS;
+        }
+
+        replaceEgg(stack, world, player, pos);
+        world.playEvent(2001, pos, Block.getStateId(world.getBlockState(pos)));
+
+        return EnumActionResult.SUCCESS;
+    }
+
+
+    private void replaceEgg(ItemStack stack, World world, EntityPlayer player, BlockPos blockPos) {
+
+        BlockSilverfish.EnumType type = null;
+
+        if(world.getBlockState(blockPos).getBlock() == Blocks.MONSTER_EGG)
+            type = ((BlockSilverfish.EnumType) world.getBlockState(blockPos).getProperties().get(BlockSilverfish.VARIANT));
+
+        if (type != null && WorldHelper.replaceBlock(player, world, blockPos, Blocks.MONSTER_EGG, getNewBlock(type))) {
+            stack.damageItem(1, player);
+        }
+
+    }
+
+    private IBlockState getNewBlock(BlockSilverfish.EnumType type) {
+
+        return type.getModelBlock();
+
+    }
+
+
     private static void renderOutlines(RenderWorldLastEvent evt, EntityPlayerSP p, Set<BlockPos> coordinates, int r, int g, int b) {
         double doubleX = p.lastTickPosX + (p.posX - p.lastTickPosX) * evt.getPartialTicks();
         double doubleY = p.lastTickPosY + (p.posY - p.lastTickPosY) * evt.getPartialTicks();
@@ -121,54 +172,6 @@ public class FishStopper extends ToolMM {
         buffer.pos(mx + 1, my, mz + 1).color(r, g, b, a).endVertex();
         buffer.pos(mx, my, mz + 1).color(r, g, b, a).endVertex();
         buffer.pos(mx, my + 1, mz + 1).color(r, g, b, a).endVertex();
-    }
-
-    @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int invSlot, boolean par5) {
-
-        EntityPlayer player = (EntityPlayer) entity;
-
-        if (AOEMode) {
-            BlockPos playerPos = player.getPosition();
-            Iterable<BlockPos> iterable = WorldHelper.findBox(playerPos, MMConfig.destroyRadius);
-
-            for (BlockPos blockPos : iterable) {
-                replaceEgg(stack, world, player, blockPos);
-            }
-        }
-    }
-
-    @Nonnull
-    @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing sideHit, float px, float py, float pz) {
-
-        if (world.isRemote) {
-            return EnumActionResult.SUCCESS;
-        }
-
-        replaceEgg(stack, world, player, pos);
-
-        return EnumActionResult.SUCCESS;
-    }
-
-
-    private void replaceEgg(ItemStack stack, World world, EntityPlayer player, BlockPos blockPos) {
-
-        BlockSilverfish.EnumType type = null;
-
-        if(world.getBlockState(blockPos).getBlock() == Blocks.MONSTER_EGG)
-            type = ((BlockSilverfish.EnumType) world.getBlockState(blockPos).getProperties().get(BlockSilverfish.VARIANT));
-
-        if (type != null && WorldHelper.replaceBlock(player, world, blockPos, Blocks.MONSTER_EGG, getNewBlock(type))) {
-            stack.damageItem(1, player);
-        }
-
-    }
-
-    private IBlockState getNewBlock(BlockSilverfish.EnumType type) {
-
-        return type.getModelBlock();
-
     }
 
     @SideOnly(Side.CLIENT)

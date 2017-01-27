@@ -46,6 +46,8 @@ public class ObjHandler {
     public static final Block knowledgeInfuser = new KnowledgeInfuser();
     public static final Block crystallizedLog = new CrystallizedLog();
     public static final Block crystallizedPlanks = new CrystallizedPlanks();
+    public static final Block crystallizedStone = new CrystallizedStone();
+    public static final Block crystallizedObsidian = new CrystallizedObsidian();
 
     public static void register() {
         //Items
@@ -73,6 +75,8 @@ public class ObjHandler {
         registerBlockWithItem(knowledgeInfuser, knowledgeInfuser.getUnlocalizedName());
         registerBlockWithItem(crystallizedLog, crystallizedLog.getUnlocalizedName());
         registerBlockWithItem(crystallizedPlanks, crystallizedPlanks.getUnlocalizedName());
+        registerBlockWithItem(crystallizedStone, crystallizedStone.getUnlocalizedName());
+        registerBlockWithItem(crystallizedObsidian, crystallizedObsidian.getUnlocalizedName());
 
         //Tiles
         GameRegistry.registerTileEntity(TileEnchantmentAir.class, "TileEnchantmentAir");
@@ -85,27 +89,27 @@ public class ObjHandler {
 
     public static void addRecipes() {
         if(MMConfig.enableFishstopper)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fishStopper), "SES", "ESE", "SES", 'S', "stone", 'E', "gemEmerald"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fishStopper), "SES", "ESE", "SES", 'S', ObjHandler.crystallizedStone, 'E', "gemEmerald"));
         if(MMConfig.enableInfusedFishStopper)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(infusedFishStopper), "RER", "EFE", "RER", 'F', new ItemStack(fishStopper, 1, OreDictionary.WILDCARD_VALUE), 'R', "blockRedstone", 'E', "gemEmerald"));
         if(MMConfig.enableEnchantBooster)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantBooster), "BBB", "BEB", "BBB", 'B', doubleCompressedBookshelf, 'E', "gemEmerald"));
         if(MMConfig.enableWaterStopper)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(waterStopper), "OBO", "BDB", "OBO", 'B', Items.BUCKET, 'D', "gemDiamond", 'O', Blocks.OBSIDIAN));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(waterStopper), "OBO", "BDB", "OBO", 'B', Items.BUCKET, 'D', "gemDiamond", 'O', ObjHandler.crystallizedObsidian));
         if(MMConfig.enableCompressedBookshelf)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compressedBookshelf), "BBB", "BBB", "BBB", 'B', Blocks.BOOKSHELF));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compressedBookshelf), "BBB", "BLB", "BBB", 'B', Blocks.BOOKSHELF, 'L', ObjHandler.crystallizedPlanks));
         if(MMConfig.enableDoubleCompressedBookshelf)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(doubleCompressedBookshelf), "BBB", "BBB", "BBB", 'B', compressedBookshelf));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(doubleCompressedBookshelf), "BPB", "PLP", "BPB", 'B', compressedBookshelf, 'L', ObjHandler.crystallizedLog, 'P', ObjHandler.crystallizedPlanks));
         if(MMConfig.enableEnchantingGenerator)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "BDB", "ETE", "BOB", 'B', Blocks.BOOKSHELF, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', Blocks.OBSIDIAN));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(enchantingGenerator), "PDP", "ETE", "POP", 'P', ObjHandler.crystallizedPlanks, 'T', Blocks.ENCHANTING_TABLE, 'E', "gemEmerald", 'D', Blocks.DIAMOND_BLOCK, 'O', ObjHandler.crystallizedObsidian));
         if(MMConfig.enableOceanAnnihalator)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', Blocks.OBSIDIAN, 'I', Blocks.ICE, 'E', "gemEmerald"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iceSpreader), "OIO", "IEI", "OIO", 'O', ObjHandler.crystallizedObsidian, 'I', Blocks.ICE, 'E', "gemEmerald"));
         if(MMConfig.enableSpawnPreventer)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spawnPreventer), "PDT", "EBE", "SGZ", 'P', Items.ENDER_PEARL, 'D', Blocks.DIAMOND_BLOCK, 'T', Items.GHAST_TEAR, 'E', "gemEmerald", 'B', Items.BONE, 'S', Items.STRING, 'G', Items.GUNPOWDER, 'Z', Items.ROTTEN_FLESH));
         if(MMConfig.enableDyeRecipes)
             GameRegistry.addRecipe(new DyeRecipes());
         if(MMConfig.enableAutoCrafter)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(autoCrafter), "RSR", "SCS", "RSR", 'C', Blocks.CRAFTING_TABLE, 'S', "stone", 'R', "blockRedstone"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(autoCrafter), "RSR", "SCS", "RSR", 'C', Blocks.CRAFTING_TABLE, 'S', ObjHandler.crystallizedStone, 'R', "blockRedstone"));
         if(MMConfig.enableUnHoe){
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(woodUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "plankWood"));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stoneUnHoe), "XSX", "XSX", "XMM", 'S', "stickWood", 'M', "cobblestone"));
@@ -116,9 +120,11 @@ public class ObjHandler {
         if(MMConfig.enableGrassStompingEnchant){
 
             if(MMConfig.enableStompingBoots){
-                GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stompingBoots), "OXO", "XBX", "OSO", 'S', Items.SHEARS, 'O', Blocks.OBSIDIAN, 'B', Items.IRON_BOOTS));
+                GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(stompingBoots), "OXO", "XBX", "OSO", 'S', Items.SHEARS, 'O', ObjHandler.crystallizedObsidian, 'B', Items.IRON_BOOTS));
             }
         }
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(knowledgeInfuser), "PIP", "IGI", "PIP", 'P', "plankWood", 'I', "ingotIron", 'G', Blocks.GLASS));
 
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(crystallizedPlanks, 4), crystallizedLog));
 

@@ -1,18 +1,23 @@
 package lilylicious.mysteriousmiscellany.gameObjs.tiles;
 
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyReceiver;
 import lilylicious.mysteriousmiscellany.gameObjs.recipes.InfuserRecipe;
 import lilylicious.mysteriousmiscellany.registry.InfuserRecipeRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.block.BlockLog;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
-public class TileKnowledgeInfuser extends TileEntity implements ITickable {
+import static net.minecraft.block.BlockLog.LOG_AXIS;
+
+public class TileKnowledgeInfuser extends TileEntity implements ITickable, IEnergyReceiver {
 
     private int craftingTicks = 0;
     private int ePower = 0;
+    private final EnergyStorage storage = new EnergyStorage(30000);
     InfuserRecipe recipe;
 
     public TileKnowledgeInfuser() {
@@ -30,15 +35,23 @@ public class TileKnowledgeInfuser extends TileEntity implements ITickable {
             return;
         }
 
-        if (craftingTicks <= 0 && recipe != null && recipe.getePowerCost() <= getEnchantingPower())
-            craftingTicks = recipe.getTickCost() / getTimeDivisor();
-        else if (craftingTicks > 0)
-            craftingTicks--;
+        if (!getWorld().isRemote) {
+            if (craftingTicks <= 0 && recipe != null && recipe.getePowerCost() <= getEnchantingPower())
+                craftingTicks = recipe.getTickCost() / getTimeDivisor();
+            else if (craftingTicks > 0 && storage.getEnergyStored() >= recipe.getRfPowerCost()) {
+                craftingTicks--;
+                storage.extractEnergy(recipe.getRfPowerCost(), false);
+            }
 
-        if (!getWorld().isRemote && InfuserRecipeRegistry.blockValid(blockAbove()) && recipe.getePowerCost() <= getEnchantingPower() && craftingTicks <= 0) {
-            getWorld().setBlockState(getPos().up(), recipe.getResultBlock().getStateFromMeta(getWorld().getBlockState(getPos().up()).getBlock().getMetaFromState(getWorld().getBlockState(getPos().up()))), 2);
-            getWorld().playEvent(2001, getPos().up(), Block.getStateId(recipe.getResultBlock().getDefaultState()));
+            if (InfuserRecipeRegistry.blockValid(blockAbove()) && recipe.getePowerCost() <= getEnchantingPower() && craftingTicks <= 0) {
+                if (recipe.getSourceBlock() instanceof BlockLog)
+                    getWorld().setBlockState(getPos().up(), recipe.getResultBlock().getDefaultState().withProperty(LOG_AXIS, getWorld().getBlockState(getPos().up()).getValue(LOG_AXIS)), 2);
+                else
+                    getWorld().setBlockState(getPos().up(), recipe.getResultBlock().getDefaultState(), 2);
+                getWorld().playEvent(2001, getPos().up(), Block.getStateId(recipe.getResultBlock().getDefaultState()));
+            }
         }
+
 
     }
 
@@ -70,7 +83,27 @@ public class TileKnowledgeInfuser extends TileEntity implements ITickable {
         return getWorld().getBlockState(getPos().up()).getBlock();
     }
 
-    public InfuserRecipe getRecipe(){
+    public InfuserRecipe getRecipe() {
         return recipe;
+    }
+
+    @Override
+    public boolean canConnectEnergy(EnumFacing from) {
+        return true;
+    }
+
+    @Override
+    public int getEnergyStored(EnumFacing from) {
+        return storage.getEnergyStored();
+    }
+
+    @Override
+    public int getMaxEnergyStored(EnumFacing from) {
+        return storage.getMaxEnergyStored();
+    }
+
+    @Override
+    public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate) {
+        return storage.receiveEnergy(maxReceive, simulate);
     }
 }
