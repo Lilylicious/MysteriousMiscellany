@@ -54,7 +54,7 @@ public class CrafterRecipeRegistry {
     private static List<Item> getRecipeSources(ShapedOreRecipe recipe) {
         for(Object obj : recipe.getInput()) {
             if(obj != null) {
-                if(obj instanceof List) {
+                if(obj instanceof List && ((List) obj).size() > 0) {
                     return Collections.singletonList(((ItemStack)((List) obj).get(0)).getItem());
                 } else if(obj instanceof ItemStack) {
                     return Collections.singletonList(((ItemStack) obj).getItem());
@@ -72,7 +72,7 @@ public class CrafterRecipeRegistry {
     private static List<Item> getRecipeSources(ShapelessOreRecipe recipe) {
         for(Object obj : recipe.getInput()) {
             if(obj != null) {
-                if(obj instanceof List) {
+                if(obj instanceof List && ((List) obj).size() > 0) {
                     return Collections.singletonList(((ItemStack)((List) obj).get(0)).getItem());
                 } else if(obj instanceof ItemStack) {
                     return Collections.singletonList(((ItemStack) obj).getItem());
