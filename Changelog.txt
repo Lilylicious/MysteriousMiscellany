@@ -1,5 +1,5 @@
-###Version 1.10.2-1.5.1
-*FIXED: Changed some recipes.
+###Version 1.10.2-1.5.2
+*FIXED: Checking for empty lists before adding recipe.
 
 ###Version 1.10.2-1.5.0
 *ADDED: Knowledge Infusion crafting! Surround the Knowledge Infuser on the sides with enchanting power (including corners), RF from the bottom, and the block to infuse on the top.
