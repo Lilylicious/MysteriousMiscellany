@@ -12,9 +12,10 @@ item.mm_unhoe_diamond.name=Diamond UnHoe
 tile.mm_compressedbookshelf.name=Compressed Bookshelf
 tile.mm_doublecompressedbookshelf.name=Double Compressed Bookshelf
 tile.mm_enchantinggenerator.name=Enchanting Generator
-tile.mm_icespreader.name=Ocean Annihalator
+tile.mm_icespreader.name=Ocean Annihilator
 tile.mm_spawnpreventer.name=Spawn Preventer
 tile.mm_autocrafter.name=Singlecrafter
+
 tile.mm_crystallizedlog.name=Crystallized Log
 tile.mm_crystallizedplanks.name=Crystallized Planks
 tile.mm_crystallizedstone.name=Crystallized Stone
