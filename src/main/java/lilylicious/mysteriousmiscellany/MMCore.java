@@ -8,6 +8,7 @@ import lilylicious.mysteriousmiscellany.events.SpawnEvents;
 import lilylicious.mysteriousmiscellany.gameObjs.ObjHandler;
 import lilylicious.mysteriousmiscellany.proxies.IProxy;
 import lilylicious.mysteriousmiscellany.registry.CrafterRecipeRegistry;
+import lilylicious.mysteriousmiscellany.registry.DyeRecipeRegistry;
 import lilylicious.mysteriousmiscellany.registry.InfuserRecipeRegistry;
 import lilylicious.mysteriousmiscellany.utils.GuiHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -62,6 +63,7 @@ public class MMCore {
     public void postInit(FMLPostInitializationEvent event){
         CrafterRecipeRegistry.load();
         InfuserRecipeRegistry.load();
+        DyeRecipeRegistry.load();
     }
 
 }
