@@ -15,8 +15,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class InteractEvents {
 
-    private static int test = 0;
-
     @SubscribeEvent
     public void onInteractEvent(RightClickBlock e) {
         IBlockState sourceBlockState = e.getWorld().getBlockState(e.getPos());
