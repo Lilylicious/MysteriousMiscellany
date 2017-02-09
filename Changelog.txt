@@ -1,3 +1,7 @@
+###Version 1.10.2-1.5.3
+*FIXED: Spelling error.
+*FIXED: Bonemealing on certain flowers now works properly.
+
 ###Version 1.10.2-1.5.2
 *FIXED: Checking for empty lists before adding recipe.
 
