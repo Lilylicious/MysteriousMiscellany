@@ -1,6 +1,5 @@
-###Version 1.11.2-1.1.3
-*FIXED: Spelling error.
-*FIXED: Bonemealing on certain flowers now works properly.
+###Version 1.11.2-1.1.4
+*FIXED: Spawn prevention debug logging works properly
 
 ###Version 1.11.2-1.1.2
 *FIXED: Checking for empty lists before adding recipe.
