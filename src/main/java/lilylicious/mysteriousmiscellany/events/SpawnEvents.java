@@ -27,7 +27,7 @@ public class SpawnEvents {
                     it.remove();
                 else if (preventer.getWorld().provider.getDimension() == evt.getEntity().worldObj.provider.getDimension() && preventer.getDistanceSq(evt.getEntity().posX, evt.getEntity().posY, evt.getEntity().posZ) <= preventer.getRadiusSquared()) {
                     evt.setResult(Event.Result.DENY);
-                    MMLogger.logInfo("Prevented spawn of " + evt.getEntity().getName());
+                    MMLogger.logDebug("Prevented spawn of " + evt.getEntity().getName());
                 }
 
             }
