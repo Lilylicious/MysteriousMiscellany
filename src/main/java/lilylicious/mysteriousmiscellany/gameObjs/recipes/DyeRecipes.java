@@ -59,6 +59,8 @@ public class DyeRecipes implements IRecipe {
                 wool = true;
                 itemsToDye.add(input);
             }
+            else
+                return false;
         }
 
         if ((sand.isEmpty() && dyes.isEmpty() || dyes.size() > 1 || sand.size() > 1) || itemsToDye.size() == 0) {
