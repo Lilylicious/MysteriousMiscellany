@@ -58,6 +58,8 @@ public class DyeRecipes implements IRecipe {
                 wool = true;
                 itemsToDye.add(input);
             }
+            else
+                return false;
         }
 
         if ((sand == null && dye == null) || itemsToDye.size() == 0) {
@@ -110,7 +112,6 @@ public class DyeRecipes implements IRecipe {
         return output;
     }
 
-    @Nonnull
     @Override
     public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
         return ForgeHooks.defaultRecipeGetRemainingItems(inv);
