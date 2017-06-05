@@ -1,6 +1,7 @@
 package lilylicious.mysteriousmiscellany.gameObjs.blocks;
 
 import lilylicious.mysteriousmiscellany.gameObjs.tiles.TileSpawnPreventer;
+import lilylicious.mysteriousmiscellany.utils.MMLogger;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -30,6 +31,8 @@ public class SpawnPreventer extends Block implements ITileEntityProvider{
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
+        if(worldIn.isRemote)
+            MMLogger.logInfo("Spawnpreventer created!");
         return new TileSpawnPreventer();
     }
 }
