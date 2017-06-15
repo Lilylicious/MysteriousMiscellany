@@ -1,3 +1,9 @@
+###Version 1.11.2-1.1.7
+*FIXED: Excludes botania from bonemeal copying and grass stomping
+
+###Version 1.11.2-1.1.6
+*FIXED: Fixed excessive spawn prevention verbosity in FML logs
+
 ###Version 1.11.2-1.1.5
 *FIXED: Dye recipes now don't function with incorrect items
 
