@@ -1,3 +1,6 @@
+###Version 1.10.2-1.5.7
+*FIXED: Excludes botania blocks from bonemeal copying and grass stomping
+
 ###Version 1.10.2-1.5.6
 *FIXED: Fixed excessive spawn prevention verbosity in FML logs
 
