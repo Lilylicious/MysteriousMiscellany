@@ -45,7 +45,8 @@ public class EnchantGrassStomper extends EnchantmentBase {
                     target = player.getEntityWorld().getBlockState(blockPos).getBlock();
 
                     if (target instanceof BlockTallGrass
-                            || target instanceof BlockDoublePlant){
+                            || target instanceof BlockDoublePlant
+                            && !target.toString().toLowerCase().contains("botania"))
                         player.getEntityWorld().destroyBlock(blockPos, false);
                     }
                 }
